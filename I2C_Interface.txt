@@ -1,0 +1,192 @@
+# I2C Interface
+(Trích xuất từ file PPTX: 29 slides)
+
+## Slide 1
+Embedded System Programming
+
+## Slide 2
+I2C Protocol
+
+## Slide 3
+Introduction to I2C
+I2C = Inter-Integrated Circuit communication protocol
+Developed by Philips in 1982
+Used for simple, low-pin-count IC-to-IC communication
+Requires only SDA (data), SCL (clock), GND
+
+## Slide 4
+Why I2C?
+Two-wire interface
+Multi-master / multi-slave support
+Simple hardware implementation (NMOS/CMOS/Bipolar)
+Widely used (consumer, SMBus prototype)
+
+## Slide 5
+Basic I2C Bus Architecture
+SDA, SCL lines
+Masters vs Slaves
+Open-drain/open-collector with pull-ups
+Idle state = HIGH
+
+## Slide 6
+I2C Electrical Behavior
+Wires are pulled HIGH by passive resistors
+Devices pull wires LOW to transmit
+Standard rate: 100 kbps
+Fast Mode: 400 kbps
+Bus limit: 400 pF capacitance, 128 addresses
+
+## Slide 7
+I2C Specifications
+Features | Specs
+Wires | 2
+Maximum Speed | Standard mode = 100 kbps Fast mode = 400 kbps High speed mode = 3.4 Mbps Ultrafast mode = 5 Mbps
+Synchronous or Asynchronous? | Synchronous
+Serial or Parallel? | Serial
+Maximum Number of Mains | Unlimited
+Maximum Number of Nodes | 1008
+
+## Slide 8
+I2C Data Packet Structure
+Communication is byte-based (8 bits)
+Includes: address byte, command (register) byte, data bytes
+Transmission types: Read, Write
+
+## Slide 9
+Start and Stop Conditions
+START = SDA ↓ while SCL HIGH
+STOP = SDA ↑ while SCL HIGH
+Only two allowed SDA transitions while SCL is HIGH
+
+## Slide 10
+Repeated Start Condition
+Change transfer direction
+Retry transmission
+Multi-master synchronization
+Used to read from specific registers without releasing bus
+
+## Slide 11
+Address Byte Structure
+7-bit address + R/W bit
+128 possible slave addresses
+SLAVE matches first 7 bits, then reads R/W bit
+R/W bit:
+0 → Write
+1 → Read
+
+## Slide 12
+Acknowledge / Not-Acknowledge
+ACK = receiver pulls SDA LOW on next SCL HIGH
+NACK = receiver leaves SDA HIGH
+Master sends NACK to end a read sequence
+
+## Slide 13
+Data Bit Timing
+SDA stable during SCL HIGH
+SDA changes only when SCL LOW
+MSB first
+
+## Slide 14
+[Slide chỉ có hình, không có chữ]
+
+## Slide 15
+Writing to a Device
+Master sends START
+Send slave address + Write bit
+Slave ACKs
+Send command (register) byte
+Send data bytes with ACK after each
+Master sends STOP
+
+## Slide 16
+Reading From a Device
+Master sends START
+Send slave address + Read bit
+Slave ACKs
+Slave transmits data bytes
+Master ACKs each byte except last
+Master sends NACK + STOP
+
+## Slide 17
+Combined Read/Write Operations
+Master writes register address (command byte)
+Sends Repeated Start
+Switches to Read mode
+Reads data bytes
+
+## Slide 18
+I2C Timing
+I2C timing is crucial for reliable communication
+Different speed modes:
+100 kbps (Standard Mode)
+400 kbps (Fast Mode)
+1 Mbps (Fast Mode Plus)
+3.4 Mbps (High Speed Mode)
+Each mode requires strict timing compliance
+This discussion focuses on Fast Mode timing
+All examples assume slave device perspective
+
+## Slide 19
+I2C Fast Mode Timing Diagram
+
+## Slide 20
+Rise Time (tr) and Fall Time (tf)
+tr: time from 30% → 70% amplitude (rising)
+tf: time from 70% → 30% amplitude (falling)
+Defined for both SDA and SCL
+Sets the limits for bus capacitance and speed
+
+## Slide 21
+Setup & Hold Times
+Setup time: data must be stable before sampling
+Hold time: data must remain stable after sampling
+Critical for START, STOP, and data bits
+Improper setup/hold → incorrect bit interpretation
+
+## Slide 22
+Start and Stop Conditions
+Start: SDA goes LOW while SCL HIGH
+tHD ;STA: hold time for START
+Minimum time SDA must be LOW before SCL falls
+Measured between 30% SDA falling → 70% SCL falling
+
+## Slide 23
+Repeated Start Condition
+tSU;STA: setup time for repeated START
+SDA must remain HIGH long enough before repeating START
+Measured from 70% SCL rising → 70% SDA falling
+
+## Slide 24
+Stop Condition Timing
+No hold time for STOP condition
+tSU;STO: minimum setup time
+Measured from 70% SCL rising → 30% SDA rising
+
+## Slide 25
+Data Setup Time
+tSU;DAT:
+SDA must be stable before SCL rising edge
+Measured from SDA 30%/70% transitions → 30% SCL rising
+
+## Slide 26
+Data Valid Time and ACK Valid Time
+tDV;DAT: maximum allowed delay after SCL edge until data becomes valid
+Measured relative to 30% SCL falling
+ACK timing (tDV;ACK) uses the 8th clock bit specifically
+Ensures slave presents valid data within tight window
+
+## Slide 27
+Buffer Time (Bus Free Time)
+tBUFF:
+Required time between STOP and next START
+Allows slaves to detect end of transaction
+If violated → slave may ignore new START
+
+## Slide 28
+Example: I2C Specification Table
+
+## Slide 29
+Exercise: I2C Simulation
+1. Write C program to implement i2c interface for 8051. Run the simulate in proteus and use I2C debugger or logic analyzer to check the status of interface signal. Explain your observation?
+2. Connect the microcontroller in exercise 1 with an i2c-supported device on simulation environment (proteus), establish the connection and demonstrate all operations of the device by i2c.
+3. Expand your application to multiple devices. What is the main difference with the single setup? Is there any difficulties in multi devices configuration?
