@@ -22,6 +22,7 @@ Hệ thống máy tính chuyên dụng
 Tích hợp vào thiết bị để thực hiện một hoặc một số chức năng cụ thể
 Bao gồm: vi điều khiển/vi xử lý, bộ nhớ, ngoại vi và phần mềm điều khiển
 
+[Ảnh slide 3: Ảnh minh họa các hệ thống nhúng — máy ảnh số, điện thoại di động, khung ảnh số, thiết bị định vị GPS, máy nghe nhạc MP3. Chữ trên ảnh: "These are ... embedded systems" và "An embedded system is a system in which a processor/microcontroller/computer is embedded to perform a specific task or tasks" (Hệ thống nhúng là hệ thống trong đó một bộ xử lý/vi điều khiển/máy tính được nhúng vào để thực hiện một nhiệm vụ cụ thể).]
 ## Slide 4
 Đặc điểm hệ thống nhúng
 Chuyên biệt, tối ưu cho một nhiệm vụ
@@ -36,6 +37,7 @@ Bộ nhớ (RAM, ROM, Flash)
 Ngoại vi (GPIO, UART, SPI, I2C...)
 Phần mềm điều khiển (firmware)
 
+[Ảnh slide 5 — Sơ đồ khối thành phần hệ thống nhúng: khối "Modular Processor Block" (khối xử lý mô-đun, vẽ bằng nét đứt) gồm Flash Storage (bộ nhớ Flash), Clock Source (nguồn xung nhịp), RAM, Processor (bộ xử lý, ở giữa) và Power Block (khối nguồn). Bên ngoài khối, nối với Processor: Com. Interfaces (giao diện truyền thông), Sensors (cảm biến), Other Blocks (các khối khác). Mũi tên hai chiều giữa Processor với RAM và với Sensors.]
 ## Slide 6
 Phần mềm nhúng
 Firmware
@@ -43,6 +45,7 @@ Hệ điều hành thời gian thực (RTOS)
 Trình điều khiển thiết bị
 Ứng dụng mức cao
 
+[Ảnh slide 6 — Sơ đồ "EMBEDDED SYSTEMS ARCHITECTURE" (kiến trúc hệ thống nhúng): Processor ở trung tâm, nối qua bus hệ thống với Flash Memory, Cache, SRAM, Timer/PWM (tín hiệu PWM ra ngoài), ADC (Analog IN — đầu vào tương tự), DAC (Analog OUT — đầu ra tương tự), JTAG (cổng DBG interface — giao diện gỡ lỗi), Clock controller (tín hiệu CLK), GPIO controller (ra các chân GPIO pins), UART (TX/RX), SPI (SCK/MOSI/MISO), I2C (SCL/SDA), USB PHY (D-/D+).]
 ## Slide 7
 Phân loại hệ thống nhúng
 Hệ thống đơn giản
@@ -50,6 +53,7 @@ Hệ thống phức tạp
 Hệ thống thời gian thực
 Hệ thống dựa trên mạng (IoT)
 
+[Ảnh slide 7 — Sơ đồ tổng quan hệ thống nhúng: hộp lớn "Embedded System" có mũi tên Input (đầu vào) đi vào và mũi tên Output (đầu ra) đi ra; bên trong chia hai hộp: Software (phần mềm) gồm Application (ứng dụng) và Embedded Microprocessor (vi xử lý nhúng); Hardware (phần cứng) gồm Embedded OS (hệ điều hành nhúng) và Peripheral Device... (thiết bị ngoại vi).]
 ## Slide 8
 So sánh với máy tính thông thường
 Máy tính: đa nhiệm, đa mục đích
@@ -99,6 +103,7 @@ General Purpose Input/Output
 Kết nối với LED, nút nhấn, cảm biến
 Điều khiển tín hiệu số
 
+[Ảnh slide 14 — Sơ đồ khối máy tính nhúng: hộp xanh lá "Embedded Computer" chứa hộp cam "Software" (phần mềm) và nhãn "Hardware" (phần cứng). Bốn mũi tên: Input Variables (biến đầu vào, từ trái vào), Output Variables (biến đầu ra, ra phải), User Interface (giao diện người dùng, phía trên, hai chiều), Link to Other Systems (liên kết tới các hệ thống khác, phía dưới, hai chiều).]
 ## Slide 15
 Ngoại vi truyền thông: UART
 Universal Asynchronous Receiver Transmitter

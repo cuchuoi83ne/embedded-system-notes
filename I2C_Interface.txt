@@ -7,6 +7,7 @@ Embedded System Programming
 ## Slide 2
 I2C Protocol
 
+[Ảnh slide 2 — Sơ đồ nối Main (master) với Node (slave): hai khối nối nhau bằng hai đường SDA (mũi tên hai chiều) và SCL (mũi tên từ Main sang Node).]
 ## Slide 3
 Introduction to I2C
 I2C = Inter-Integrated Circuit communication protocol
@@ -28,6 +29,7 @@ Masters vs Slaves
 Open-drain/open-collector with pull-ups
 Idle state = HIGH
 
+[Ảnh slide 5 — Figure 1: Generalized I2C Connection Diagram (sơ đồ nối I2C tổng quát): một MASTER và ba SLAVE (#1, #2, #3) cùng nối lên hai đường bus SDA và SCL; cả hai đường đều được kéo lên nguồn VDD qua điện trở kéo lên Rp.]
 ## Slide 6
 I2C Electrical Behavior
 Wires are pulled HIGH by passive resistors
@@ -52,12 +54,14 @@ Communication is byte-based (8 bits)
 Includes: address byte, command (register) byte, data bytes
 Transmission types: Read, Write
 
+[Ảnh slide 8 — Sơ đồ khung truyền I2C: Start Condition → Address Frame (7 or 10 Bits) → Read/Write Bit → ACK/NACK Bit → Data Frame 1 (8 Bits) → ACK/NACK Bit → ... → Stop Condition.]
 ## Slide 9
 Start and Stop Conditions
 START = SDA ↓ while SCL HIGH
 STOP = SDA ↑ while SCL HIGH
 Only two allowed SDA transitions while SCL is HIGH
 
+[Ảnh slide 9 — Dạng sóng điều kiện Start và Stop: Start Condition — SDA chuyển từ HIGH xuống LOW trong khi SCL đang HIGH; Stop Condition — SDA chuyển từ LOW lên HIGH trong khi SCL đang HIGH. Đây là hai lần chuyển mức duy nhất của SDA được phép khi SCL ở mức HIGH.]
 ## Slide 10
 Repeated Start Condition
 Change transfer direction
@@ -65,6 +69,7 @@ Retry transmission
 Multi-master synchronization
 Used to read from specific registers without releasing bus
 
+[Ảnh slide 10 — Dạng sóng Repeated Start (Start Without a Stop Condition): SDA chuyển xuống LOW trong khi SCL đang HIGH, xảy ra giữa chừng một lần truyền mà không có Stop trước đó — dùng để đổi hướng truyền hoặc thử lại mà không nhả bus.]
 ## Slide 11
 Address Byte Structure
 7-bit address + R/W bit
@@ -74,21 +79,28 @@ R/W bit:
 0 → Write
 1 → Read
 
+[Ảnh: sơ đồ khung truyền giống slide 8 (Start Condition → Address Frame → Read/Write Bit → ACK/NACK Bit → Data Frame → ACK/NACK Bit → Stop Condition).]
 ## Slide 12
 Acknowledge / Not-Acknowledge
 ACK = receiver pulls SDA LOW on next SCL HIGH
 NACK = receiver leaves SDA HIGH
 Master sends NACK to end a read sequence
 
+[Ảnh slide 12 — Dạng sóng khung địa chỉ: Start Condition → 7-Bit Address (do Master phát) → READ/WRITE Bit → ACK/NACK Bit (do Slave phát) ở xung SCL thứ 9. Đoạn "Asserted By Master" bao phủ từ Start tới hết bit R/W; đoạn "Asserted By Slave" là bit ACK/NACK.]
 ## Slide 13
 Data Bit Timing
 SDA stable during SCL HIGH
 SDA changes only when SCL LOW
 MSB first
 
+[Ảnh slide 13 — Dạng sóng thời gian bit dữ liệu: "SDA Stays Stable On HIGH SCL Period" — SDA giữ ổn định trong suốt khoảng SCL ở mức HIGH; các bit dữ liệu D1, D2, D3 chỉ đổi mức khi SCL ở mức LOW.]
 ## Slide 14
 [Slide chỉ có hình, không có chữ]
 
+[Ảnh slide 14 — Infographic "Packet Structure & Data Transfer Flow": truyền thông I2C thực hiện theo từng byte (8-bit). Một khung truyền đầy đủ phải gồm: điều kiện START, địa chỉ thiết bị đích (Address), hướng truyền (Read/Write), các khung dữ liệu (Data frames) và điều kiện STOP. Các bit ACK/NACK đóng vai trò phản hồi trạng thái.
+Khung truyền: START (SDA ↓ khi SCL High) → ADDRESS (7-bit, Slave Address) → R/W (0: Write, 1: Read) → ACK (Slave Acknowledge) → DATA (8-bit, Transmitted Data) → ACK (Acknowledge) → STOP (SDA ↑ khi SCL High).
+Write Sequence (ghi): 1. Master phát tín hiệu START. 2. Gửi địa chỉ slave 7-bit + bit W (0). 3. Chờ Slave trả ACK. 4. Master gửi địa chỉ thanh ghi nội bộ của slave. 5. Master gửi liên tiếp các byte dữ liệu, nhận ACK sau mỗi byte. 6. Kết thúc bằng tín hiệu STOP.
+Read Sequence (đọc): 1. Master phát tín hiệu START, gửi Address + bit W (0). 2. Gửi địa chỉ thanh ghi đích cần đọc. 3. Phát tín hiệu Repeated START (Sr) để đổi hướng. 4. Gửi địa chỉ slave + bit R (1). 5. Slave gửi dữ liệu; Master gửi ACK sau mỗi byte. 6. Ở byte cuối, Master gửi NACK rồi STOP.]
 ## Slide 15
 Writing to a Device
 Master sends START
@@ -98,6 +110,7 @@ Send command (register) byte
 Send data bytes with ACK after each
 Master sends STOP
 
+[Ảnh slide 15 — Dạng sóng ghi (Writing to a Device): Start Condition → địa chỉ 7-bit 1100100 → bit READ/WRITE = 0 (Write) → ACK/NACK Bit (A) → byte dữ liệu D7–D0 → ACK/NACK Bit (A) → Stop Condition. Ghi chú trên ảnh: "Data Stays Stable During HIGH SCL Pulse". Bên phát dữ liệu: MASTER → SLAVE → MASTER.]
 ## Slide 16
 Reading From a Device
 Master sends START
@@ -107,6 +120,7 @@ Slave transmits data bytes
 Master ACKs each byte except last
 Master sends NACK + STOP
 
+[Ảnh slide 16 — Dạng sóng đọc (Reading From a Device): Start Condition → địa chỉ 7-bit 1100100 → bit READ/WRITE = 1 (Read) → ACK/NACK Bit (A) → byte dữ liệu D7–D0 → ACK/NACK Bit (A) → byte dữ liệu thứ hai D7–D0 → NACK (NA) → Stop Condition. Bên phát dữ liệu: MASTER → SLAVE → MASTER → SLAVE → MASTER.]
 ## Slide 17
 Combined Read/Write Operations
 Master writes register address (command byte)
@@ -114,6 +128,7 @@ Sends Repeated Start
 Switches to Read mode
 Reads data bytes
 
+[Ảnh slide 17 — Bảng định dạng kết hợp (Combined Read/Write): S | ADDRESS 110 a3:a0 | W (0) | A | COMMAND XX b5:b0 | A | S (Repeated Start) | ADDRESS 110 a3:a0 | R (1) | A | DATA b7:b0 | A (gạch trên = NACK) | P (Stop). Nghĩa: master ghi địa chỉ thanh ghi (command byte), rồi Repeated Start để chuyển sang chế độ đọc và đọc dữ liệu.]
 ## Slide 18
 I2C Timing
 I2C timing is crucial for reliable communication
@@ -129,6 +144,7 @@ All examples assume slave device perspective
 ## Slide 19
 I2C Fast Mode Timing Diagram
 
+[Ảnh slide 19 — Sơ đồ thời gian Fast Mode đầy đủ (NXP, mã 002aac938), hai phần: phần trên từ chu kỳ clock đầu tiên (1st clock cycle, có S = Start) tới clock thứ 9 (9th clock), ghi các tham số tSU;DAT (data setup time), tHD;DAT (data hold time), tVD;DAT (data valid time), tHD;STA (hold time START), tLOW (LOW period của SCL), tHIGH (HIGH period của SCL), tr (rise time), tf (fall time), 1/fSCL; phần dưới có Repeated Start (Sr), tSU;STA, tHD;STA, tSP, tVD;ACK, tSU;STO, tBUF, Stop (P), Start (S). Mức logic: VIL = 0.3VDD, VIH = 0.7VDD.]
 ## Slide 20
 Rise Time (tr) and Fall Time (tf)
 tr: time from 30% → 70% amplitude (rising)
@@ -136,6 +152,7 @@ tf: time from 70% → 30% amplitude (falling)
 Defined for both SDA and SCL
 Sets the limits for bus capacitance and speed
 
+[Ảnh slide 20 — Định nghĩa thời gian lên/xuống: tr (rise time) đo từ mức 30% lên mức 70% biên độ trên sườn lên; tf (fall time) đo từ mức 70% xuống mức 30% biên độ trên sườn xuống; áp dụng cho cả SDA và SCL.]
 ## Slide 21
 Setup & Hold Times
 Setup time: data must be stable before sampling
@@ -150,24 +167,28 @@ tHD ;STA: hold time for START
 Minimum time SDA must be LOW before SCL falls
 Measured between 30% SDA falling → 70% SCL falling
 
+[Ảnh: dạng sóng điều kiện Start và Stop — giống slide 9 (Start: SDA ↓ khi SCL HIGH; Stop: SDA ↑ khi SCL HIGH).]
 ## Slide 23
 Repeated Start Condition
 tSU;STA: setup time for repeated START
 SDA must remain HIGH long enough before repeating START
 Measured from 70% SCL rising → 70% SDA falling
 
+[Ảnh slide 23 — Dạng sóng tSU;STA và tHD;STA: tSU;STA (setup time cho Repeated START) đo từ mức 70% của sườn lên SCL tới mức 70% của sườn xuống SDA; tHD;STA (hold time cho START) đo từ mức 30% của sườn xuống SDA tới mức 70% của sườn xuống SCL.]
 ## Slide 24
 Stop Condition Timing
 No hold time for STOP condition
 tSU;STO: minimum setup time
 Measured from 70% SCL rising → 30% SDA rising
 
+[Ảnh slide 24 — Dạng sóng tSU;STO: setup time cho điều kiện STOP, đo từ mức 70% của sườn lên SCL tới mức 30% của sườn lên SDA.]
 ## Slide 25
 Data Setup Time
 tSU;DAT:
 SDA must be stable before SCL rising edge
 Measured from SDA 30%/70% transitions → 30% SCL rising
 
+[Ảnh slide 25 — Dạng sóng tSU;DAT: data setup time — SDA phải ổn định trước sườn lên của SCL; đo từ mức 30%/70% của SDA tới mức 30% của sườn lên SCL (hình vẽ hai lần tSU;DAT ở đầu và cuối một bit dữ liệu).]
 ## Slide 26
 Data Valid Time and ACK Valid Time
 tDV;DAT: maximum allowed delay after SCL edge until data becomes valid
@@ -182,9 +203,26 @@ Required time between STOP and next START
 Allows slaves to detect end of transaction
 If violated → slave may ignore new START
 
+[Ảnh slide 27 — Dạng sóng tBUF (bus free time / buffer time): khoảng thời gian trống giữa STOP và START tiếp theo, đo trên SDA giữa các mức 30%/70%; khoảng này cho phép các slave nhận biết lần giao dịch đã kết thúc.]
 ## Slide 28
 Example: I2C Specification Table
 
+[Ảnh slide 28 — Bảng thông số kỹ thuật I2C (Specification Table), các giá trị chính (min–max):
+- fSCL (tần số clock SCL): Standard-mode 0–100 kHz; Fast-mode 0–400 kHz; Fast-mode Plus 0–1000 kHz.
+- tHD;STA (hold time, repeated START): Standard 4.0 µs min; Fast 0.6 µs min; Fast-mode Plus 0.26 µs min.
+- tLOW (LOW period của SCL): Standard 4.7 µs min; Fast 1.3 µs min; Fast-mode Plus 0.5 µs min.
+- tHIGH (HIGH period của SCL): Standard 4.0 µs min; Fast 0.6 µs min; Fast-mode Plus 0.26 µs min.
+- tSU;STA (setup time, repeated START): Standard 4.7 µs min; Fast 0.6 µs min; Fast-mode Plus 0.26 µs min.
+- tSU;DAT (data setup time): Standard 250 ns min; Fast 100 ns min; Fast-mode Plus 50 ns min.
+- tr (rise time của SDA và SCL): Standard max 1000 ns; Fast max 300 ns; Fast-mode Plus max 120 ns.
+- tf (fall time của SDA và SCL): Standard max 300 ns; Fast max 300 ns; Fast-mode Plus max 120 ns.
+- tSU;STO (setup time, STOP): Standard 4.0 µs min; Fast 0.6 µs min; Fast-mode Plus 0.26 µs min.
+- tBUF (bus free time giữa STOP và START): Standard 4.7 µs min; Fast 1.3 µs min; Fast-mode Plus 0.5 µs min.
+- Cb (tải điện dung mỗi đường bus): max 400 pF (Standard/Fast), 550 pF (Fast-mode Plus).
+- tVD;DAT (data valid time): max 3.45 µs (Standard), 0.9 µs (Fast), 0.45 µs (Fast-mode Plus).
+- tVD;ACK (data valid acknowledge time): max 3.45 µs (Standard), 0.9 µs (Fast), 0.45 µs (Fast-mode Plus).
+- VIL (noise margin ở mức LOW, gồm hysteresis): 0.1VDD; VIH (noise margin ở mức HIGH, gồm hysteresis): 0.2VDD.
+Chú thích: (1) Mọi giá trị tham chiếu theo mức VIH(min) = 0.3VDD và VIL(max) = 0.7VDD. (2) tHD;DAT là data hold time đo từ sườn xuống của SCL, áp dụng cho dữ liệu đang truyền và bit acknowledge. (3) Thiết bị phải tự đảm bảo hold time tối thiểu 300 ns cho tín hiệu SDA (so với VIH(min) của SCL) để bắc qua vùng không xác định của sườn xuống SCL. (4) tVD;DAT tối đa có thể là 3.45 µs (Standard) và 0.9 µs (Fast), nhưng phải nhỏ hơn giá trị lớn nhất của tVD;DAT hoặc tVD;ACK trừ đi thời gian chuyển mức; giới hạn này chỉ áp dụng khi thiết bị không kéo dài chu kỳ LOW (tLOW) của SCL — nếu clock kéo dài SCL thì dữ liệu phải hợp lệ trước setup time lúc nó nhả SCL.]
 ## Slide 29
 Exercise: I2C Simulation
 1. Write C program to implement i2c interface for 8051. Run the simulate in proteus and use I2C debugger or logic analyzer to check the status of interface signal. Explain your observation?

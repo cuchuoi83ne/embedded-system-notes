@@ -29,9 +29,11 @@ Real time Operating System (RTOS).
 ## Slide 6
 EXAMPLES
 
+[Ảnh slide 6 — Sơ đồ khối thẻ thông minh không tiếp xúc (Contact-less Smart Card Components): ROM, EEPROM, bộ nhớ biến ứng dụng (Application Variables), bus dữ liệu/địa chỉ/điều khiển nội bộ (Data, Address, Control Internal Buses), giao diện I/O, Timer, bộ điều khiển ngắt (Interrupt Controller), mạch sạc 16 MHz (Charge Circuit), bơm biên độ (Amplitude Pump), mạch điều chế khóa (Key Modulator), nguồn cấp hệ thống trên thẻ (System Power Supply), bộ thu phát (Transceiver), ăng-ten (Antenna). Nhãn trên thẻ: Account Number (số tài khoản), Expiry Date (ngày hết hạn), Card Number (số thẻ).]
 ## Slide 7
 EXAMPLES
 
+[Ảnh slide 7 — Ảnh liệt kê các ứng dụng của hệ thống nhúng theo nhóm: viễn thông (Telecom), thẻ thông minh (Smart Cards), điện toán di động (Mobile Computing), truy cập di động (Mobile Access), truyền thông (Communication), mạng máy tính (Computer Networking), hệ thống và ngoại vi số (Digital Systems and Peripherals), điện tử tiêu dùng (Consumer Electronics), tên lửa và quốc phòng (Missiles and Defence), ngân hàng (Banking), an ninh (Security), hàng không vũ trụ (Aerospace), điều khiển động cơ (Motor Control System), hệ thống mạng (Networking Systems), xử lý ảnh (Image processing), máy in (Printers), đầu thu set-top box, DVD, TV độ nét cao (High definition TVs), card mạng (Network Cards), máy ảnh số (Digital cameras), ô tô (Car).]
 ## Slide 8
 Features of complicated Embedded Systems
 Dedicated functions
@@ -57,6 +59,19 @@ Packaging cost
 ## Slide 11
 Design Requirements
 
+[Ảnh slide 11 — Bảng "Design Metrics" (các chỉ tiêu thiết kế) với 12 hàng:
+- Power Dissipation (tiêu thụ năng lượng): với nhiều hệ thống như điện thoại di động hay máy ảnh số, năng lượng tiêu thụ là yếu tố quan trọng; pin cần sạc lại càng ít càng tốt.
+- Performance (hiệu năng): thời gian thực thi lệnh; ví dụ điện thoại xử lý tín hiệu giọng nói giữa micro và loa trong 0,1 giây; máy ảnh chụp ảnh 4M pixel trong 0,5 giây.
+- Process deadlines (hạn chót xử lý): các tiến trình như xử lý phím bấm, làm tươi màn hình, xử lý tín hiệu audio/video đều có hạn chót phải hoàn thành.
+- User interfaces (giao diện người dùng): gồm bàn phím (keypad) và màn hình hiển thị (GUI).
+- Size (kích thước): đo bằng (i) dung lượng bộ nhớ cần dùng và (ii) số cổng logic trong phần cứng.
+- Engineering cost (chi phí kỹ thuật): chi phí ban đầu để thiết kế, gỡ lỗi và kiểm thử phần cứng/phần mềm; là chi phí không lặp lại (non-recurring cost).
+- Manufacturing cost (chi phí sản xuất): chi phí sản xuất mỗi đơn vị sản phẩm.
+- Flexibility (tính linh hoạt): khả năng thay đổi thiết kế mà không tốn nhiều chi phí kỹ thuật lại; ví dụ nâng cấp phần mềm để thêm chức năng.
+- Prototype development time (thời gian phát triển mẫu): thời gian làm mẫu thử và kiểm thử nội bộ.
+- Time-to-market (thời gian ra thị trường): thời gian từ sau khi làm mẫu tới khi sản phẩm đến tay người dùng.
+- System and user safety (an toàn hệ thống và người dùng): an toàn khi vận hành (ví dụ khóa liên động an toàn) và an toàn cho người dùng khi sử dụng sản phẩm.
+- Maintenance (bảo trì): khả năng thay đổi, bổ sung chức năng cho hệ thống; ví dụ bảo trì phần mềm là thêm dịch vụ/chức năng, bảo trì phần cứng là thêm bộ nhớ hoặc đổi thẻ nhớ.]
 ## Slide 12
 Design Process
 Trang
@@ -73,6 +88,7 @@ Update system
 Design Process
 Trang
 
+[Ảnh slide 13 — Sơ đồ khối quy trình thiết kế: Model/Analyse Requirements of System (mô hình hóa/phân tích yêu cầu hệ thống) → Data Structure, Software Architecture, Interfaces and Algorithms (cấu trúc dữ liệu, kiến trúc phần mềm, giao diện và thuật toán) → Sequence/Cycle (trình tự/chu kỳ) → Design (thiết kế, logic nội bộ) → kiểm tra, có nhánh quay lại bước trước nếu chưa đạt. Một số nhãn nhỏ trong ảnh OCR chưa đọc rõ.]
 ## Slide 14
 Main parts of Embedded Systems
 Processors
@@ -86,6 +102,7 @@ DAC/ADC
 LED, LCD
 Trang
 
+[Ảnh slide 14 — Sơ đồ khối các thành phần chính của hệ thống nhúng: cột trái gồm Processor (bộ xử lý), Timers (bộ định thời), Interrupt Controller (bộ điều khiển ngắt); cột phải gồm Program Memory and Data Memory (bộ nhớ chương trình và dữ liệu), Serial Communication Ports (cổng truyền thông nối tiếp), Parallel Ports (cổng song song); phía trên là Input Devices Interfacing/Driver Circuits (mạch giao tiếp/lái thiết bị đầu vào); phía dưới là Outputs Interfacing/Driver Circuits (mạch giao tiếp/lái thiết bị đầu ra); dọc trái là Power Supply, Reset and Oscillator Circuits (nguồn, reset và mạch dao động); dọc phải là System Specific Circuits (mạch đặc thù của hệ thống).]
 ## Slide 15
 Processor of Embedded Systems
 Trang
@@ -99,16 +116,19 @@ Application-specific instruction set processor
 1.	Small Scale Embedded System
 Trang
 
+[Ảnh slide 16 — Ảnh minh họa hệ thống nhúng quy mô nhỏ (Small Scale Embedded System) dùng vi điều khiển 8/16-bit.]
 ## Slide 17
 Application-specific instruction set processor
 2. Medium Scale Embedded Systems
 Trang
 
+[Ảnh slide 17 — Ảnh minh họa hệ thống nhúng quy mô trung bình (Medium Scale Embedded System) dùng vi điều khiển 16-bit; ví dụ: 8051MX, PIC16F876, PIC18, Hitachi D64F2623FA, 68HC12xx, 68HC16xx.]
 ## Slide 18
 Application-specific instruction set processor
 3. Large Scale Embedded System
 Trang
 
+[Ảnh slide 18 — Ảnh minh họa hệ thống nhúng quy mô lớn (Large Scale Embedded System) dùng vi điều khiển 32-bit; ví dụ: ARM family Cortex-M3, Atmel AT91 series, C16x/ST10 series, Philips LPC 2000 series, Texas Instrument TI TMS470R1B1M, Samsung S3C44B0X.]
 ## Slide 19
 Single Purpose processor
 Trang
@@ -141,6 +161,7 @@ Software Requirements for Embedded Systems
 ## Slide 22
 Hardware of Embedded Systems and 8051
 
+[Ảnh trang trí, không có nội dung kỹ thuật.]
 ## Slide 23
 Hardware Overview of Embedded Systems
 Hardware Overview of Embedded Systems
@@ -149,6 +170,7 @@ Memory: Program and data memory
 Peripheral: Input / output devices
 Bus: transmits signals between components
 
+[Ảnh slide 23 — Sơ đồ bus hệ thống: CPU nối với MEMORY (bộ nhớ) qua Address bus (bus địa chỉ), Data bus (bus dữ liệu) và các tín hiệu điều khiển (Tuning and control signals).]
 ## Slide 24
 CPU
 Basic CPU block diagram includes:
@@ -156,6 +178,7 @@ ALU: Computational and logic unit
 CU: Control unit
 Memory Unit: Some memory is built into the CPU to support storage and fast calculations.
 
+[Ảnh slide 24 — Sơ đồ khối CPU cơ bản: CPU nối với bộ nhớ (MEMORY); bên trong CPU có ALU (đơn vị số học-logic), CU (đơn vị điều khiển) và Memory Unit (bộ nhớ trong CPU).]
 ## Slide 25
 CPU
 Process of executing a command:
@@ -164,6 +187,7 @@ CU Decodes the command
 The ALU executes the command
 The results are saved in memory
 
+[Ảnh slide 25 — Sơ đồ chu trình thực thi lệnh của CPU, 4 bước: STEP 1 Fetch Instructions From RAM (nạp lệnh từ RAM) → STEP 2 Decode Instructions Into Commands (giải mã lệnh thành lệnh thực thi) → STEP 3 Execute Commands (thực thi: Control Unit điều khiển, ALU tính toán) → STEP 4 Store Results In the RAM (lưu kết quả vào RAM).]
 ## Slide 26
 CPU
 ISA (Instruction Set Architecture):
@@ -185,29 +209,35 @@ For example:
 Processor: Core i3, i5, i7…
 Microcontroller: PIC, AVR…
 
+[Ảnh slide 27 — Sơ đồ so sánh: Microprocessor Unit (MPU, bộ vi xử lý) cần thêm I/O Ports (cổng vào/ra) và Support Devices (thiết bị hỗ trợ); còn Microcontroller (vi điều khiển) là mạch tích hợp hoàn chỉnh gồm Processor (bộ xử lý), Memory (bộ nhớ) và Peripherals (ngoại vi: GPIO, Timer, SPI...). Ví dụ Processor: Core i3, i5, i7; ví dụ Microcontroller: PIC, AVR.]
 ## Slide 28
 Embedded System Architecture
 Von-Neumann & Harvard
 
+[Ảnh slide 28 — Hai sơ đồ kiến trúc: (a) Harvard architecture — CPU có bus riêng tới Program Memory (bộ nhớ chương trình, nonvolatile) và Data Memory (bộ nhớ dữ liệu); (b) von Neumann architecture — CPU dùng chung một bus tới một bộ nhớ chung chứa cả chương trình và dữ liệu.]
 ## Slide 29
 Memory and memory design
 Memory is a	means	of storing information including programs and data.
 Some basic information about computer memory.
 
+[Ảnh slide 29 — Bảng so sánh các loại bộ nhớ với các cột: Memory Type (loại bộ nhớ), Access Time (thời gian truy cập), Cost/MB (chi phí mỗi MB), Typical Amount Used (dung lượng điển hình); ví dụ Main memory (bộ nhớ chính) có thời gian truy cập khoảng 60-80 ns. Một số dòng trong bảng OCR chưa đọc rõ.]
 ## Slide 30
 Memory and memory design
 Classification:
 
+[Ảnh slide 30 — Sơ đồ cây phân loại BỘ NHỚ (Memory): CÓ ĐỊNH (Fixed) gồm ROM, PROM; BÁN CÓ ĐỊNH (Semi-fixed) gồm EPROM, EEPROM, FLASH; ĐỌC/GHI (R/W) gồm SRAM, DRAM; NGOÀI (External) gồm SAM, DAM, CD, DVD...]
 ## Slide 31
 Memory and memory design
 Memory hierarchy model:
 
+[Ảnh slide 31 — Tháp phân tầng bộ nhớ (Memory hierarchy): CPU ở trên cùng; Register set (tập thanh ghi): dung lượng điển hình >1 KB, thời gian truy cập <1 ns; Level 1 cache: >64 KB, <1-2 ns; Level 2 cache: >512 KB, <4 ns; Main memory (bộ nhớ chính): >256 MB, <8 ns; Disks (đĩa): >60 GB, <8 ms. Càng gần CPU thì càng nhanh nhưng dung lượng càng nhỏ.]
 ## Slide 32
 A memory chip is a specific microchip, arranged with basic pins.
 The pins of a typical memory chip include address bus inputs, data inputs, chip select control pins, write/read and power pins.
 For example: a 1Kx4 static RAM (1024 “memory words”, each word is 4 bits long
 Physical memory organization and memory design
 
+[Ảnh slide 32 — Hình 11.8 "Sơ đồ nối chân một vi mạch nhớ RAM 1Kx4": các chân địa chỉ A0, A1, A2, A3...; các chân dữ liệu D1, D2, D3, D4; CS (chân chọn chip); WE (điều khiển Ghi/Đọc); Vcc (chân nguồn nuôi +5V); GND (chân nối đất).]
 ## Slide 33
 Designing memory from available memory chips has the following steps:
 1. Determine the number of memory chips to create the required memory capacity according to the formula:
@@ -229,20 +259,24 @@ Design Static RAM
 Build a 16Kbyte memory based on 16Kx1bit SRAM chips. The 16Kbyte SRAM memory tape is built on the basis of 8 16K x 1bit SRAM chips, to obtain a memory cell with a length of 8 bits.
 Physical memory organization and memory design
 
+[Ảnh slide 34 — Cấu trúc trong của chip SRAM 16Kx1 (bên trái) và ký hiệu chip (bên phải). Bên trái: ma trận các bit nhớ 128 hàng và 128 cột (2^7 x 2^7); địa chỉ A6–A0 vào khối Giải mã hàng, A13–A7 vào khối Giải mã cột; khối Đệm dữ liệu; khối Logic Ghi/Đọc với đầu vào CS (chọn chip) và W/R (ghi/đọc); đầu vào DI (dữ liệu vào), đầu ra DO (dữ liệu ra). Bên phải: ký hiệu chip 16Kx1 với chân -CS (trên), A13, A0, W/R (trái), DI, DO (dưới).]
 ## Slide 35
 Design DRAM
 DRAM MK 4164 is 64K bit DRAM in 1 Chip. Assuming we will design RAM for the 8085 CPU with a maximum RAM of 64 KB, 8 Chips will be needed.
 Physical memory organization and memory design
 
+[Ảnh slide 35 — Sơ đồ ghép nối DRAM cho CPU 8085: CPU 8085 nối qua bộ dồn kênh MUX 16 vào → 8 ra (2 chip SN 74257, điều khiển bởi tín hiệu ALE) tới module RAM DRAM 64 KB dùng chip MK4164; các tín hiệu: AD7–AD0 (địa chỉ/dữ liệu dồn kênh), A7–A0, CLK, RDY. Một số nhãn trong ảnh OCR chưa đọc rõ.]
 ## Slide 36
 ROM/EPROM
 Build a ROM module with a capacity of 32KB, using Chip 2764 8K x 8 bits, the  first  address  is  20000hex.  The  application  program  loads  into  this module.
 Physical memory organization and memory design
 
+[Ảnh slide 36 — Sơ đồ giải mã địa chỉ module ROM 32 KB: 4 chip nhớ C0, C1, C2, C3; mỗi chip nhận địa chỉ A12–A0 và tín hiệu RD chung; chân chọn chip CS0 (gạch trên), CS1 (gạch trên), CS2 (gạch trên), CS3 (gạch trên) lấy từ mạch tổ hợp logic giải mã tạo các tín hiệu chọn chip; mạch giải mã này nhận A14, A13 và tín hiệu cho phép từ mạch tổ hợp logic giải mã chọn địa chỉ vùng (nhận A19–A15); bus địa chỉ (Từ BUS địa chỉ) ở phía trên, bus dữ liệu D7–D0 (BUS dữ liệu) ở phía phải.]
 ## Slide 37
 Model of coupling technique
 Pair with peripheral devices
 
+[Ảnh slide 37 — Sơ đồ mô hình ghép nối (Model of coupling technique): Central Control Unit (đơn vị điều khiển trung tâm) nối với thiết bị ngoại vi (Thiết bị) qua hệ thống đường dây gồm dây địa chỉ, dây điều khiển và dây dữ liệu (DATA in/out); có các tín hiệu STROBE, Status và mạch ghép nối (Ghép nối).]
 ## Slide 38
 8051 microcontroller architecture
 Basic 8051 architecture:
@@ -254,6 +288,7 @@ counters/timers
 I/O
 interrupt	handlers
 
+[Ảnh slide 38 — Sơ đồ kiến trúc 8051: khối IR (Instruction Register, thanh ghi lệnh), ID (Instruction Decoder, bộ giải mã lệnh), Execution unit (đơn vị thực thi) + ALU, Condition test branch logic (logic kiểm tra điều kiện rẽ nhánh), Control and Sequencing Circuit (mạch điều khiển và định trình), Interrupt Control Circuit (mạch điều khiển ngắt), PC (Program Counter); phía trên bus nối T0, T1, SI (Serial Interface), WDT (Watchdog Timer), Reset, Osc (oscillator), Port P1; phía phải: SFRs IO and devices (thanh ghi chức năng đặc biệt cho I/O và thiết bị), A, B, PSW, SP SFRs, DPTR (2 SFRs), Register Banks of 8 registers (các bank thanh ghi, mỗi bank 8 thanh ghi), ROM and RAM; Port P3, Port P2 (A8–A15), Port P0 (AD0–AD7).]
 ## Slide 39
 Characteristics of 8051
 12	MHz	clock.	Processor	instruction cycle time 1 μs.
@@ -263,6 +298,7 @@ Internal 8-bit data bus and Internal 16- bit address bus
 CISC instruction set architecture
 8051 microcontroller architecture
 
+[Ảnh slide 39 — Sơ đồ chân vi điều khiển 8051 (dạng DIP 40 chân): chân 40 Vcc, chân 20 Vss (GND); XTAL1 (chân 19) và XTAL2 (chân 18) nối thạch anh 12 MHz với 2 tụ 30pF; PSEN (chân 29), ALE (chân 30), EA (chân 31), RST (chân 9); P3.7/RD (17), P3.6/WR (16), P3.5/T1 (15), P3.4/T0 (14), P3.3/INT1 (13), P3.2/INT0 (12), P3.1/TXD (11), P3.0/RXD (10); P1.0–P1.7 (chân 1–8); P2.0–P2.7/A8–A15 (chân 21–28); P0.0–P0.7/AD0–AD7 (chân 32–39).]
 ## Slide 40
 Characteristics of 8051
 Special Registers (SFR)
@@ -274,6 +310,7 @@ Registers	for	I/O,	timers,	ports,	and interrupt handlers
 8-bit	stack	pointer	(SP)	with	an	initial default value of 0x07
 8051 microcontroller architecture
 
+[Ảnh: sơ đồ chân 8051 — giống slide 39, xem mô tả ở slide 39.]
 ## Slide 41
 Characteristics of the simple 8051:
 Does not handle floating point
@@ -284,6 +321,7 @@ There is no CPU Pipeline engineering
 Do not process commands in parallel.
 8051 microcontroller architecture
 
+[Ảnh: sơ đồ chân 8051 — giống slide 39, xem mô tả ở slide 39.]
 ## Slide 42
 Features of 8051:
 RAM size 128bytes
@@ -291,6 +329,7 @@ The 32 bytes of RAM are used as four register sets (register-set/bank). Each ban
 Stack memory/External data memory can be added up to 64 kB.
 8051 microcontroller architecture
 
+[Ảnh slide 42 — Sơ đồ chân chip Intel 8051: bên trái chip: P1.0–P1.7, Reset, P3.0–P3.7, X1, X2, GND; bên phải chip: VCC, P0.0–P0.7, EA (tích cực thấp), ALE, PSEN, P2.7–P2.0.]
 ## Slide 43
 Some improved versions of the 8051
 Version 8351 has on-chip ROM
@@ -299,6 +338,7 @@ Version 8951 uses on-chip EEPROM or 4 kB flash memory.
 In	the	extended 8051 versions	the address space is expanded up to 16 MB.
 8051 microcontroller architecture
 
+[Ảnh: sơ đồ chân chip Intel 8051 — giống slide 42.]
 ## Slide 44
 Features of 8051:
 Two interrupt pins 12 and  13 INT0 and INT1.
@@ -307,6 +347,7 @@ Two timers T0, T1.
 Serial Interface (SI) – programmable for three full-duplex UART modes for I\O
 8051 microcontroller architecture
 
+[Ảnh: sơ đồ chân 8051 — giống slide 39, xem mô tả ở slide 39.]
 ## Slide 45
 Features of 8051:
 In	some	versions	–	there	is	a	DMA controller, a pulse width modulator
@@ -317,6 +358,7 @@ ADCs were also integrated.
 For  example,  the  Siemens  SAB 80535-N  supports  an  ADC  with  a programmable reference voltage.
 8051 microcontroller architecture
 
+[Ảnh: sơ đồ chân 8051 — giống slide 39, xem mô tả ở slide 39.]
 ## Slide 46
 8051 microcontroller architecture
 8051 INSTRUCTION SET ARCHITECTURE
@@ -330,6 +372,7 @@ Instant migration:
 MOV immediate DPTR
 Push or Pop direct
 
+[Ảnh: sơ đồ chân 8051 — giống slide 39, xem mô tả ở slide 39.]
 ## Slide 47
 8051 microcontroller architecture
 Manipulates	bits,	bytes,	and	logic instructions
@@ -340,6 +383,7 @@ Logical instructions AND, OR, XOR
 Byte operations:
 Delete,	add	or swap	commands	and rotation commands (CLR, RL, RC…)
 
+[Ảnh: sơ đồ chân 8051 — giống slide 39, xem mô tả ở slide 39.]
 ## Slide 48
 8051 microcontroller architecture
 Math commands:
@@ -348,6 +392,7 @@ Add	(Add),	subtract	(Sub),	multiply	(Mul), divide (div)
 Increase or decrease orders:
 Inc (Increment), Dec (Decrement)
 
+[Ảnh: sơ đồ chân 8051 — giống slide 39, xem mô tả ở slide 39.]
 ## Slide 49
 8051 INSTRUCTION SET ARCHITECTURE
 Program flow control commands:
@@ -361,6 +406,7 @@ Break command:
 Flow control interrupt mask bits, priority bits
 RETI
 
+[Ảnh: sơ đồ chân 8051 — giống slide 39, xem mô tả ở slide 39.]
 ## Slide 50
 8051 I/O Port
 8051 has 4 input and output ports: P0, P1, P2, P3:
@@ -387,10 +433,12 @@ P2 và P3 ports
 Input and output circuit of 8051
 The circuit of input	and output ports controls stepper motors used in printers
 
+[Ảnh slide 53 — Sơ đồ nối cổng 8051 điều khiển 2 động cơ bước (Stepper Motors 1 & 2, dùng trong máy in): P1.0 → Coil A, P1.1 → Coil B, P1.2 → Coil C, P1.3 → Coil D (động cơ 1); P1.3 → Coil A', P1.4 → Coil B', P1.5 → Coil C', P1.6 → Coil D' (động cơ 2). Lưu ý: hình vẽ ghi P1.3 ở cả hai nhóm.]
 ## Slide 54
 Input and output circuit of 8051
 Circuit of input and output ports for six servo motors in the robot
 
+[Ảnh slide 54 — Sơ đồ nối cổng 8051 điều khiển 6 động cơ servo trong robot: P1.0 → Servomotor 1, P1.1 → Servomotor 2, P1.0 → Servomotor 3, P1.1 → Servomotor 4, P1.0 → Servomotor 5, P1.1 → Servomotor 6. Lưu ý: hình vẽ ghi nhãn P1.0/P1.1 lặp lại cho cả 6 servo, ghi đúng như hình.]
 ## Slide 55
 Programming 8051 input and output
 Byte addresses of I/O ports P0, P1, P2 and P3 of the 8051 used to access and execute read or write or other commands
@@ -414,7 +462,7 @@ v Ports P0, P1, P2 and P3 each have 8 bits
 v Each	bit	has	an	address	to	access	and	perform reading or writing using bit manipulation instructions.
 v Address is the bit address of the pins. Each bit address is specified in the corresponding instruction.
 §	Bit addresses P0.0 to P0.7 correspond to 0x80 to 0x87.
-§	Bit addresses P1.0 to P1.7 correspond to 0x80 to 0x97.
+§	Bit addresses P1.0 to P1.7 correspond to 0x90 to 0x97.
 §	Bit addresses P2.0 to P2.7 correspond to 0xA0 to 0xA7.
 §	Bit addresses P3.0 to P3.7 correspond to 0xB0 to 0xB7.
 
@@ -422,10 +470,10 @@ v Address is the bit address of the pins. Each bit address is specified in the c
 Programming 8051 input and output
 Byte programming using 8051 ports
 v For example:
-§	CPL 0x90 ; Port P1 is assigned the value 0
+§	CPL 0x90 ; đảo toàn bộ 8 bit của cổng P1 (complement all 8 bits of port P1)
 §	CLR 0x80 ; P0.0 has a value of 0.
 §	SETB 0x80; P0.0 has a value of 1.
-§	CLRB 0x80; Assign P0.0 to a value of 1.
+§	SETB 0x80; P0.0 has a value of 1.
 
 ## Slide 59
 Pair with external storage
@@ -436,10 +484,12 @@ The communication circuitry is identically designed for the memory  to connect t
 Pair with external storage
 Connection to external program and data memory circuits
 
+[Ảnh slide 60 — Sơ đồ nối 8051 với bộ nhớ ngoài: P0 (AD0–AD7) qua chốt (Latch, điều khiển bởi ALE) thành A0–A7; P2 thành A8–A15; PSEN chọn bộ nhớ chương trình (Program Memory 0x0000–0xFFFF); P3.7 (RD) và P3.6 (WR) điều khiển đọc/ghi bộ nhớ dữ liệu (Data Memory 0x0000–0xFFFF); D0–D7 là bus dữ liệu.]
 ## Slide 61
 Pair with external storage
 The interface uses the PPI external port of the 8051
 
+[Ảnh slide 61 — Sơ đồ giao diện dùng cổng mở rộng PPI của 8051: P0 (AD0–AD7) qua Latch (điều khiển bởi ALE) và bộ giải mã (Decoder) tới các cổng PA, PB, PC của PPI; P2 (A8–A15) làm địa chỉ cao; P3.6 (WR) và P3.7 (RD) điều khiển đọc/ghi.]
 ## Slide 62
 Pair with external storage
 Port P0 in extension mode and ALE signal
@@ -598,6 +648,7 @@ v Mode 0 when SCON bits 7 and 6 (mode bits) are 00
 ## Slide 82
 Software components of embedded systems and 8051 microprocessors
 
+[Ảnh trang trí, không có nội dung kỹ thuật.]
 ## Slide 83
 MAIN CONTENT
 Device drivers
@@ -613,6 +664,7 @@ v Software Overview of Embedded Systems
 v Operating System: System software
 v Application: Application software
 
+[Ảnh slide 84 — Sơ đồ tầng phần mềm nhúng (từ trên xuống): Application (ứng dụng) → Middleware (phần mềm trung gian) → Operating Systems (hệ điều hành) → Device Drivers (trình điều khiển thiết bị).]
 ## Slide 85
 Introduction to embedded software
 www.ptit.edu.vn
@@ -631,6 +683,7 @@ www.ptit.edu.vn
 BỘ MÔN: KHOA HỌC MÁY TÍNH – KHOA CNTT1
 Trang 5
 
+[Ảnh minh họa trang trí (mã nguồn trên nền máy chủ), không có nội dung kỹ thuật.]
 ## Slide 87
 Introduction to embedded software
 v Software design is based on conventional procedures.
@@ -646,6 +699,19 @@ v Software design is based on conventional procedures.
 8. Jump to the first task and execute in a thread
 similar.
 
+[Ảnh slide 87 — Đoạn mã C minh họa thiết kế phần mềm theo vòng lặp chính (super-loop):
+void main ()
+{
+  Configurations ();
+  Initialisations ();
+  while (1)
+  {
+    Task 1 ();
+    Task 2 ();
+    ...
+    Task n ();
+  }
+}]
 ## Slide 88
 Introduction to embedded software
 conventional
@@ -658,6 +724,7 @@ Low price
 Easily affected by the entire system, if any an error task
 Lack of processing time
 
+[Ảnh: đoạn mã vòng lặp chính (super-loop) — giống slide 87.]
 ## Slide 89
 Introduction to embedded software
 v Software	design	is	based	on	conventional procedures.
@@ -687,10 +754,12 @@ Low price
 Easily affected by the entire system, if any an error task
 Lack of processing time
 
+[Ảnh: đoạn mã vòng lặp chính (super-loop) — giống slide 87.]
 ## Slide 92
 3.1 Device drivers
 What is Driver?
 
+[Ảnh slide 92 — Sơ đồ minh họa "Driver là gì": khối DRIVER nằm giữa SETUP (thiết lập) và phần cứng — driver là lớp trung gian giữa hệ điều hành và thiết bị. Một số nhãn trong ảnh OCR chưa đọc rõ.]
 ## Slide 93
 I. DEVICE DRIVER DEFINITIONS (Device driver)
 Device driver: connection between OS and I/O devices.
@@ -706,6 +775,7 @@ Device drivers operate in privileged mode: need to be well designed and secured 
 ## Slide 95
 DEVICE DRIVER DEFINITIONS (Device driver)
 
+[Ảnh slide 95 — Sơ đồ vị trí của driver: phía SOFTWARE (trái) có User Program (chương trình người dùng) nối vào Kernel (nhân hệ điều hành); Kernel nối qua các Driver tới các Interface (giao diện) rồi tới các Device (thiết bị) ở phía HARDWARE (phải). Sơ đồ vẽ 3 hàng song song: 3 User Program, 3 Driver, 3 Interface, 3 Device.]
 ## Slide 96
 Advantages of Device drivers
 Simplify OS operations
@@ -746,6 +816,7 @@ Block Drivers
 Block Drivers
 v Ví dụ: disks are applied as block devices.
 
+[Ảnh slide 100 — Sơ đồ block driver: User Process (tiến trình người dùng) gọi qua Kernel; Kernel quản lý buffer cache (bộ nhớ đệm) và chỉ gọi Driver khi dữ liệu yêu cầu không có trong cache hoặc khi cache thay đổi; Driver làm việc với các yêu cầu của OS để điền hoặc xóa các buffer có kích thước cố định; ví dụ: disks (đĩa) là block device. Một số nhãn trong ảnh OCR chưa đọc rõ.]
 ## Slide 101
 Character Drivers
 v Requests with packet sizes of any length of I/O.
@@ -756,6 +827,7 @@ v I/O requests are passed directly to the driver, and the driver transfers data 
 ## Slide 102
 Character Drivers
 
+[Ảnh slide 102 — Sơ đồ character driver: User Process gọi read/write qua system call; System call handler chuyển tới các entry points của driver; driver truyền dữ liệu trực tiếp tới bộ nhớ của vi xử lý, không qua buffer cache. Một số nhãn trong ảnh OCR chưa đọc rõ.]
 ## Slide 103
 Block driver vs Character Drivers
 Block Driver | Character Driver
@@ -764,6 +836,7 @@ Not suitable for devices communicating with variable size packets | Suitable for
 Can be used to support UNIX-based devices | UNIX-based devices are not supported
 Suitable for supporting drives and hard drives | Suitable to support serial port, parallel port, network card, keyboard...
 
+[Ảnh trang trí, không có nội dung kỹ thuật.]
 ## Slide 104
 Characteristics of a device driver
 v Driver is a set of entry points called by the OS.
@@ -786,6 +859,7 @@ v The rest of the driver :
 ## Slide 106
 3.2 . Real Time Operating System (RTOS)
 
+[Ảnh slide 106 — Sơ đồ chức năng của RTOS (Real-Time Operating System): Task scheduling (lập lịch tác vụ), Device drivers (trình điều khiển thiết bị), Resource management (quản lý tài nguyên); các Task 1... chạy trên RTOS.]
 ## Slide 107
 II. Real Time Operating System (RTOS)
 Definition: is a multi-tasking operating system for applications with real-time constraints.
@@ -808,6 +882,7 @@ Manage network devices
 ## Slide 110
 Process management
 
+[Ảnh slide 110 — Sơ đồ trạng thái tiến trình trong RTOS: ở giữa là vòng tròn đỏ "runs in the embedded system kernel" (chạy trong nhân hệ thống nhúng); xung quanh: "runs in single user mode" (vòng tròn cam, phía trên, thuộc user mode), "interrupt handling" (vòng tròn đỏ, trái), "fork(): Create a new TT, insert horizontally" (vòng tròn vàng, phải), "schedule" (hộp xanh, phải), "ready in queue" (vòng tròn đỏ, dưới phải), "stop, hang, wait" (vòng tròn xanh, dưới trái), "resource request" (mũi tên xanh, trên phải), "Event" (dưới). Đường nét đứt ngăn cách user mode (phía trên) với multiply mode/kernel mode (phía dưới).]
 ## Slide 111
 Hierarchy of priority processes
 Hierarchy	of	user	priorities,	called	static	priority hierarchy, or real-time priority hierarchy.
@@ -849,6 +924,7 @@ Provides	efficient	scheduling,	running,	and stopping of tasks in case of multipl
 ## Slide 116
 [Slide chỉ có hình, không có chữ]
 
+[Ảnh slide 116 — Bốn sơ đồ thời gian (a, b, c, d) minh họa quan hệ giữa sự kiện (Event) và đáp ứng (response) trong hệ thời gian thực: trục thời gian nằm ngang, thời điểm sự kiện là ts, thời điểm đáp ứng là tp, khoảng cách giữa chúng là T (thời gian đáp ứng). (a) Đáp ứng xảy ra tại một thời điểm tp sau sự kiện. (b) Đáp ứng bắt đầu tại tp1 và kết thúc tại tp2. (c) Đáp ứng kéo dài liên tục từ ts tới tp (vạch đậm trên trục thời gian). (d) Đáp ứng xảy ra tại tp rồi tiếp tục kéo dài sau đó (vạch đậm sau tp).]
 ## Slide 117
 mailboxes...)
 www.ptit.edu.vn
@@ -864,9 +940,11 @@ An  embedded  system  running  an  OS  makes 	working  with  multiple  inputs  s
 ## Slide 118
 [Slide chỉ có hình, không có chữ]
 
+[Ảnh slide 118 — Hai sơ đồ xếp tầng phần mềm so sánh RTOS với hệ điều hành thông thường. Bên trái (dùng real-time kernel): từ trên xuống — application (ứng dụng), middleware (2 khối), device driver (2 khối, màu xanh), real time kernel (lớp đỏ ở dưới cùng). Bên phải (dùng operating system): application, middleware (2 khối), operating system (lớp đỏ bao phủ cả device driver), device driver (2 khối, màu xanh) nằm trong lớp operating system.]
 ## Slide 119
 Options for RTOS
 
+[Ảnh slide 119 — Bảng các lựa chọn RTOS: tự viết RTOS riêng (Own RTOS); RTOS cho hệ thống nhúng quy mô nhỏ: uCOS-II, eCOS, Red Hat Embedded Linux, RT Linux; RTOS thương mại: VxWorks, Windows CE, Windows Mobile, Symbian, QNX, VRTX, PalmOS; hệ điều hành đa mục đích dùng làm RTOS: Linux, Windows.]
 ## Slide 120
 Complex multitasking embedded system design requirements
 IDE
@@ -881,6 +959,7 @@ Testing and debugging software for RTOS testing
 ## Slide 121
 Basic functions in RTOS
 
+[Ảnh slide 121 — Bảng các chức năng cơ bản trong RTOS: Kernel Scheduler (bộ lập lịch nhân), Device and System Driver (driver thiết bị và hệ thống), Time and Clock Functions (hàm thời gian và đồng hồ), Delay Functions (hàm trễ), ISR and IST Functions, Task Switching (chuyển đổi tác vụ), Stack and Memory Functions (hàm ngăn xếp và bộ nhớ), Send and Receive Functions (hàm gửi/nhận), Create Queue, Signal/Semaphore, Queue, Mailbox, Pipes, Sockets, RPCs, Exception Handling Functions (hàm xử lý ngoại lệ), Watchdog Functions.]
 ## Slide 122
 Classification of RTOSes
 In-house Developed RTOSes
@@ -923,6 +1002,7 @@ III. Middleware, Application
 Middleware: located in many places, separate from the app, OS, and drivers.
 Application: The software sits at the top layer, communicating with the user.
 
+[Ảnh slide 126 — Ba cách xếp tầng phần mềm nhúng (từ trên xuống: Application Layer, System Software Layer, Hardware Layer): (1) System Software Layer gồm Middleware, Operating System, Device Drivers xếp song song; (2) Operating System chứa Middleware bên trong, Device Drivers ở dưới; (3) không có Operating System, chỉ có Middleware và Device Drivers.]
 ## Slide 127
 Middleware
 Middleware: considered middleware, ensuring flexibility, security and helping to link software at adjacent layers.
@@ -950,6 +1030,7 @@ Run the program and check for errors
 ## Slide 131
 Design and install embedded systems
 
+[Ảnh trang trí, không có nội dung kỹ thuật.]
 ## Slide 132
 MAIN CONTENT
 System design
@@ -978,9 +1059,11 @@ SYSTEM DESIGN
 ## Slide 135
 System design
 
+[Ảnh slide 135 — Sơ đồ các thuộc tính chất lượng hệ thống (system qualities): dependability (độ tin cậy), reliability (độ tin cậy vận hành), maintainability (khả năng bảo trì), adaptability (khả năng thích ứng), modifiability (khả năng sửa đổi), configurability (khả năng cấu hình), testability (khả năng kiểm thử), functional range (phạm vi chức năng), marketability (khả năng thương mại hóa).]
 ## Slide 136
 System design
 
+[Ảnh slide 136 — Sơ đồ các yếu tố thiết kế hệ thống: Functional range (phạm vi chức năng), Memory and/or chip area (bộ nhớ và/hoặc diện tích chip), Integrated peripherals (ngoại vi tích hợp), I/O Abstraction capabilities (khả năng trừu tượng hóa I/O), dynamic HW-abstraction (trừu tượng hóa phần cứng động), Hierarchy (phân tầng).]
 ## Slide 137
 System design
 performance attributes
@@ -996,12 +1079,14 @@ System design
 System design
 Example of building an embedded system performance scenario :
 
+[Ảnh slide 140 — Sơ đồ ví dụ kịch bản hiệu năng hệ thống nhúng (có cả bản tiếng Việt và bản tiếng Anh của cùng nội dung): ghi nhận số liệu kết quả (độ trơn tru, trễ, mất dữ liệu); các nguồn sự kiện tác động vào hệ thống từ bên trong; các nguồn sự kiện tác động vào hệ thống từ bên ngoài (môi trường phát triển tiêu chuẩn, mạng tốc độ cao, nhiệt độ, độ ẩm...); mô phỏng tác động lên hiệu năng của hệ thống nhúng từ các nguồn sự kiện; đáp ứng của hệ thống: các sự kiện được xử lý theo thời gian thực.]
 ## Slide 141
 Embedded System Design Phases
 
 ## Slide 142
 Hardware and software design planning
 
+[Ảnh slide 142 — Sơ đồ luồng các giai đoạn thiết kế hệ thống nhúng (có cả bản tiếng Việt và bản tiếng Anh): Đặc tả Hệ thống (Specification) → Ý đồ phát triển ban đầu (concept) → Phát triển phần mềm / Phát triển phần cứng → Ý đồ phát triển chi tiết → Viết mã (coding) / Ý đồ thiết kế chi tiết / Thực hiện phần cứng → Chạy thử (test) → Hợp nhất phần cứng – phần mềm → Thử nghiệm → Đánh giá, phê chuẩn sản phẩm (product review and approval).]
 ## Slide 143
 Embedded System design process
 Design rules
@@ -1117,3 +1202,5 @@ Design and develop product designs
 Embedded product development lifecycle
 §	Embedded product development lifecycle
 §	EDLC - embedded product development life cycle : “analysis-design-installation”
+
+[Ảnh slide 153 — Vòng tròn "Embedded Product Development Life Cycle" (vòng đời phát triển sản phẩm nhúng) gồm 4 giai đoạn: Planning And Analysis (lập kế hoạch và phân tích), Design (thiết kế), Implementation (triển khai), Commercial Launch (ra mắt thương mại).]

@@ -1,0 +1,852 @@
+# SPI - Embedded System (slide deck)
+(Trích xuất bằng OCR từ file PDF 83 trang, chữ trong ảnh nên có thể còn lỗi nhận dạng; các lỗi rõ ràng đã sửa, sơ đồ đã mô tả bằng chữ ở cuối trang tương ứng.)
+
+## Trang 01
+TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÔNG TIN VÀ TRUYÊN THÔNG VIỆT - HÀN
+Vietnam - Korea University of Information and ễommunication Technology
+Embedded Svstem
+Proeramming
+
+## Trang 02
+Serial Peripheral Interface
+| (SPD
+
+## Trang 03
+ NeedofSerial Bus Protocol
+_5“z.=-_
+° _ Peripheral devices in embedded systems =>
+parallel address and data bus => lots of wIring and
+requIres number of pins => additional decoding logic
+required.
+°Ò To reduce the pins and wiring => cost => Serial bus
+protocol => SPI (4-wire) & I2C (2-wrre).
+° _ Penalty => Slower communication.
+
+## Trang 04
+Vu Various Ser1al Bus Protocol
+_—=2z=--__
+
+® UART
+
+°Ồ SPI-Embedded System Protocol
+
+°Ò IQẠC- Embedded System Protocol
+
+° CAN
+
+°Ồ USB
+
+*® SATA ctc..
+
+## Trang 05
+
+
+°Ò The Serlal Peripheral Interface Bus or SPI bus is a
+synchronous serlal data link standard named by
+Motorola that operates in full duplex mode.
+
+°Ò - Devices communIcate in master/slave mode where
+the master device initiates the data frame. Multiple
+slave devices are allowed with individual
+slave select (chip select) lines.
+
+## Trang 06
+
+°During a data transfer the master always sends 8
+to 16 bits of data to the slave, and the slave always
+sends a bvte of data to the master.
+° MaxImum data bit rate is one eighth of the Input
+clock rate.
+
+## Trang 07
+ °© One Central device (Master), initiates communIcatlon
+
+with all slaves.
+
+° No address decoding logic required.
+
+°© SPI Master wIshes to send the data to slave or requesf
+information from the slave, 1t activates the clock
+signal.
+
+° _. Master generates Information on one line (MOSI)
+while samples (read) from another line (MISO).
+
+## Trang 08
+ SPI Pin Description
+_——=.=-_
+°® SCLK — Serial Clock (output from master)
+° MOSI— Master Output, Slave Input (output from
+master)
+°  MISO —— Master Input, Slave Output (output from
+slave)
+*® SS — Slave Select (active low; output from master)
+
+## Trang 09
+
+SCK
+| INTERFACE Na
+SSEL
+
+[Sơ đồ trang 9: khối "SPI, SSP0 INTERFACE" với 4 chân hai chiều ở phía phải: SCK, MOSI, MISO, SSEL; phía trái là mũi tên bus hai chiều nối vào hệ thống.]
+## Trang 10
+ Pin Name :SCK (Serial Clock)
+Type :Ïnput / Outputf
+_——=.=-_
+°The SPI used clock signal to synchronize the
+transfer of data across the SPI Interface.
+° The SCK is always driven by the master and
+recerved by the slave, The clock is programmable to
+be active high or active low.
+sThe SCK is only active during a data transfer. Any
+other time, 1í is elther In 1fs Inactfive sfate, Or trI-
+stated.
+
+## Trang 11
+ Pin Name : MISO
+— (Master in Slave ouf)
+Type : lnput / Qufput
+
+« The MISO sIgnal is a unidirectional signal used to
+transfer serial data from the slave to the masfter.
+° When a device is a slave, serial data is output on
+this signal.
+* When a device is a master, serlal dafa is Input on
+this signal.
+° When a slave device is no( selec(ed, the slave
+drives the signal high impedance.
+
+## Trang 12
+ Pin Name : MOSI
+
+—..- (Master out Slave in)
+Type : Input / Qufput
+° The MOSI sIgnal is a unidirectional signal used to
+transfer serial data from the Master to the Slave.
+°When a device is a Master, serial dafa is output on
+this signal.
+° When a device is a Slave, serial data is Input on this
+signal.
+
+## Trang 13
+ Pin Name : SSEL (Slave Selecf)
+Type : input
+
+° The SPI slave select signal is an active low signal
+that Indicates which slave is currently selected to
+parficIpate in a dafa transfer.
+°Ò Each slave has 1ts own unique slave select signal
+Input.
+The SSEL must be low before data transactlons
+begin and normally stays low for the duratlon of the
+transaction.
+® [the SSEL signal goes high any time during a data
+transfer, the transfer is considered to be aborted.
+
+## Trang 14
+* In this event, the slave returns to idle, and any data that was
+received is thrown_ away. There are no other indicatlons of
+this exception.
+°This signal is not directly driven by the master. It could be
+driven by a simple general purpose ƯO under software
+contfrol.
+«On the LPC2300 the SSEL pin can be used for a different
+function when the SŠPI Interface is only used in Master mode.
+°For example, pin hosting the SSEL functlon can be
+configured as an output digital GPIO pin and 1t is also used
+to select one of the SPI slaves.
+
+## Trang 15
+ Operation
+_—=2=-_
+e The SPI bus can operate with a single master
+device and with one or more slave devIces.
+* SPI bus: single master and single slave
+— — S8 ' so
+ln sô —— TT.
+nH= 5S - Š
+
+[Sơ đồ trang 15: SPI bus một master – một slave. SPI Master (cam) nối với SPI Slave (xanh lá) bằng 4 đường: SCLK (master → slave), MOSI (master → slave), MISO (slave → master), SS (slave select, có gạch trên, master → slave).]
+## Trang 16
+
+* [Ýa sinple slave device is used, the SSEL pm may
+be fixed to logic low if the slave permIts 1t.
+° Some slaves requlre the fallingø edøe (high->low
+transition) of the slave selectf to inifiate an action
+such as the MAXI1242 by Maxim, an ADC, that
+Sfarfts conversIon on said transifion.
+
+## Trang 17
+ Configuration
+° Two types multiple slave configuration:
+° Typical SPI bus: Master and independent SÏlaves
+* Daisy-Chained SPI bus: Master and cooperative slaves
+
+## Trang 18
+ Typical SPI Bus
+° With multiple slave devices, an Independent
+S5SEL signal is required from the master for
+each slave device (3).
+l
+_] —”
+TT. .«
+
+[Sơ đồ trang 18: Typical SPI Bus — một master nối 3 slave. SCLK, MOSI và MISO dùng chung cho cả 3 slave; mỗi slave có đường chọn riêng: SS1, SS2, SS3 (đều có gạch trên) từ master tới từng slave.]
+## Trang 19
+
+°In the Independent slave configpuration, there is an
+independent slave select line for each slave. This is the way
+SPI is normally used.
+* Since the MISO pins of the slaves are connected together,
+they are required to be tr1-stafe pIns.
+
+## Trang 20
+V‹u1 Daisy-Chained SPI Bus
+'_=i
+I
+
+[Sơ đồ trang 20: Daisy-Chained SPI Bus — một master nối 3 slave theo chuỗi. SCLK và SS dùng chung cho cả 3 slave; đường dữ liệu nối tiếp: MOSI của master → MOSI của slave 1; MISO của slave 1 → MOSI của slave 2; MISO của slave 2 → MOSI của slave 3; MISO của slave 3 → MISO của master. Chỉ cần một đường SS chung thay vì một đường riêng cho mỗi slave.]
+## Trang 21
+
+° Some products with ŠPI bus are designed to be capable of
+being connected in a dalsy chain confieuration, the first
+slave output beIng connected to the second slave Input, efc.
+° The SPI port of each slave is designed to send out during
+the second øroup of clock pulses an exact copy of what 1t
+received during the first øroup ofclock_ pulses.
+°Such a feature only requires a sinele SSEL line from the
+master, rather than a separate SSEL line for each slave.
+
+## Trang 22
+ Poins
+_——=.=-_
+°® _ Not have ack mechanism to confirm receipt of data
+and does not have flow control.
+° _.SPI Master, not have knowledge of whether sÏlave
+exist or Not
+° _ Not particular addressing scheme.
+° _ Not defined any maximum data rate.
+
+## Trang 23
+ Data Transm1ission
+_——=.=-_
+* A typIcal hardware sefup using two shift registers to
+form an Inter-chip c1rcular buffer
+Master Slave
+0ƑT:ET:TTT]-+——+>PTT:ETTTTr
+
+[Sơ đồ trang 23: truyền dữ liệu bằng hai thanh ghi dịch (shift register) 8 bit tạo thành bộ đệm vòng liên chip (inter-chip circular buffer). Master và Slave mỗi bên có một ô Memory và một thanh ghi dịch 8 bit (các ô 0–7). SCLK đi từ master sang slave; MOSI chuyển từng bit từ thanh ghi master sang thanh ghi slave; MISO chuyển ngược từ thanh ghi slave về thanh ghi master, khép thành vòng tròn.]
+## Trang 24
+ *°lo begin a communiIcaftlon, the master Íirst
+”—— configures the Clock, using a frequency less than
+or equal to the maximum frequency the slave
+device supports.
+°Such frequencles are commonly in the range of
+1-70 MHz.
+°The master then pulls the slave select SSEL low
+for the desired chIp.
+*During each SPI clock cycle, a full duplex data
+transmission OCCUrs.
+
+## Trang 25
+
+sThe master sends a bit on the MOSIL line; the slave
+reads 1t from that same line
+° The slave sends a bit on the MISO line;
+
+the master reads 1t from that same line
+
+* Transmissions normally involve two shIft registers
+Of some g1ven word s1ze, such as eieght bits, one in
+the master and one in the slave; they are connected
+In a TIng.
+
+## Trang 26
+
+°After that register has been shifted out, the master
+and slave have exchanged values.
+sThen each device takes that value and does
+something with 1t, such as wrIfIng 1t fo memory.
+° If there are more data to exchange, the shift
+registers are loaded with new data and the process
+repeafts.
+
+## Trang 27
+ Clock Polarity and Phase
+_5“z.=-_
+°In addition to setting the clock frequency, the
+master must also configure the clock polarity and
+phase with respect to the data.
+* SPI Block Guide names these two optlons as CPOL
+and CPHA respectively, and most vendors have
+adopted that convention.
+
+## Trang 28
+ ....
+sœ R8 =THHHHHHH]
+SS | Iiliiht ||
+Cycle # CLLETLL+TtTELTIET
+CPHA=0 MISO zTT?TTTTTETET7TET=
+MOSI z TÍHIIHIT 6ì 8 Bức:
+HN
+Cycle# LH LLHLLL
+CPHAz1 MISO zECTTT7TTTTTTT£T7TTEE
+MOSI zETTT?T†T†1?T?T£T†?T# 1z
+A timing diagram showing clock polarity and phase
+
+[Sơ đồ trang 28: giản đồ thời gian thể hiện clock polarity và phase. SCK vẽ hai dạng: CPOL=0 (mức nghỉ thấp) và CPOL=1 (mức nghỉ cao, đảo ngược). SS (slave select) xuống thấp trong suốt lần truyền. CPHA=0: các bit dữ liệu 1–8 trên MISO/MOSI được lấy mẫu ở cạnh clock đầu tiên, bit đầu tiên đã có trước cạnh clock đầu tiên. CPHA=1: bit đầu tiên xuất hiện sau cạnh clock đầu tiên, dữ liệu được lấy mẫu ở cạnh clock thứ hai; ngoài khoảng truyền, MISO/MOSI ở trạng thái trở kháng cao (Z).]
+## Trang 29
+ AtCPOL=O0, the base value of the clock is zero
+_—=2z=--__
+
+° For CPHA=O0, data are read on the clock†s
+risine edge (low->hieh transifion) and data are
+changcd on a falling edge (high->low clock
+transItion).
+
+° For CPHA-=I], data are read on the clock's
+falling edøe and data are changed on a rIsing
+edge.
+
+## Trang 30
+
+At€CPOLI=I, the base value of the clock is one
+(inversion of CPOL=0)
+° For CPHA=0, data are read on clock's falling
+edge and data are changed on a r1sing edege.
+° For CPHA-=], data are read on clock's rIsing
+edge and data are changed on a falling edøge.
+
+## Trang 31
+CPOL & CPHA | First data driven | Other data driven | Data sampled
+0 & 0 | Prior to first SCK rising edge | SCK falling edge | SCK rising edge
+0 & 1 | First SCK rising edge | SCK rising edge | SCK falling edge
+1 & 0 | Prior to first SCK falling edge | SCK rising edge | SCK falling edge
+1 & 1 | First SCK falling edge | SCK falling edge | SCK rising edge
+
+(Bảng trên đã sửa lại từ nội dung trang 29-30 vì OCR trang 31 bị lỗi.)
+
+## Trang 32
+ ° 8-bIt data transfer, device is master/slave and settIing
+of CPHA variable.
+°Device, Master => Start of transfer, master having a
+data ready to transfer. Activate the clock and begin the
+transfer.
+°Device, Slave and CPHA-=Ô, transfer start when
+SSEL=O0.
+°Device, Slave and CPHA=l, transfer starts on first
+clock edge when slave is selected.
+
+## Trang 33
+Mode Numbers
+The combinations of polarity and phases are often referred to as modes.
+Mode | CPOL | CPHA
+0 | 0 | 0
+1 | 0 | 1
+2 | 1 | 0
+3 | 1 | 1
+
+(Bảng mode trên đã sửa lại vì OCR trang 33 bị lỗi; đối chiếu trang 29-31.)
+
+## Trang 34
+ Register Description
+_——=.=-_
+* SPI has seven registers, from that programmers
+Iinterface for SPI peripheral has five reg1sfers.
+° The bits In the rest oftwo TEST regIsfers are
+intended for functional verification only.
+
+## Trang 35
+
+
+Name Description Áccess
+
+S0SPCR SPI Control Register.
+This register controls the R/W
+Operation ofthe SPI.
+
+S0SPSR SPI Status Register.
+Thịis register shows the R0
+status of the SPI.
+
+## Trang 36
+
+Name Descriptfion Áccess
+S0SPDR SPI Data Register.
+Thịs bi-directional
+register provides the R/W
+transmit and recelve
+data for the SPI.
+
+## Trang 37
+
+Name Description Áccess
+S0SPCCR_ SPI Clock Counter Register.
+This register controls the R/W
+frequency of a masters SCK
+S0SPINT  SPI Interrupt Flag.
+This register contaIns the R/W
+Interrupt flag for the
+SPI mterface.
+
+## Trang 38
+ (1) SPI Control Register
+(S0SPCR - 0xE0020000)
+Bit Symbol Value Description
+1:0 - Reserved, user software
+should not wrIte ones to
+| reserved bIts.
+
+## Trang 39
+ SPI Control Register
+¬ (S0SPCR - 0xE0020000)
+Bit Symbol Value Description
+2 BiEnable 0 The SPI controller sends
+and receIves 8 bIts of data
+per transfer.
+] The SPI controller sends and
+receIves the number of bIts
+selected by bits II:8.
+
+## Trang 40
+ SPI Control Register
+— (S0SPCR - 0xE0020000)
+Bit Symbol Value Description
+3 CPHA Clock phase control
+0: Data is sampled on the first
+clock edge of SCK.
+TT Data Is sampled on the
+second clock edge of the
+SCK.
+
+## Trang 41
+ SPI Control Register
+—— (S0SPCR - 0xE0020000)
+Bit Symbol Value Description
+4 CPOL Clock polarity control.
+0 SCK11sactive hiph.
+[ SCK11sactive low.
+5_ MSTR Master mode select.
+0 The SPI operates mm Slave
+mode.
+1: The SPI operates in Master
+mode.
+
+## Trang 42
+ SPI Control Register
+(S0SPCR - 0xE0020000)
+Bit Symbol Value Description
+6ˆ LSBE LSB First, controls in which
+direction each byte 1s
+shifted when transferred.
+0 SPI data is transferred MSB
+(bit 7) first.
+] SPI data is transferred LSB
+(bit 0) first.
+
+## Trang 43
+ SPI Control Register
+¬ (S0SPCR - 0xE0020000)
+Bit Symbol Value Description
+7 NPIE Serial peripheral Interrupt
+enable.
+0 SPI interrupts are Inhibited.
+l_ A hardware Interrupt Is
+øenerated each time the
+SPIF or MODE bits are
+activated.
+
+## Trang 44
+ SPI Control Register
+— (S0SPCR - 0xE0020000)
+Bit Symbol Value Description
+11:8 BITS When bit 2 of this reg1sfer 1s
+1, this field controls the
+number of bits per transfer:
+1000 8 bits per transfer
+1001 9 bits per transfer
+1010 10 bits per transfer
+1011 II bits per transfer
+
+## Trang 45
+ SPI Control Register
+— (S0SPCR - 0xE0020000)
+Bit Symbol Value Description
+1100 12 bits per transfer
+1101 13 bits per transfer
+1110 14 bits per transfer
+1111 15 bits per transfer
+0000 16 bits per transfer
+
+## Trang 46
+ SPI Control Register
+(S0SPCR - 0xE0020000)
+Bit Symbol Value Description
+15:12 - Reserved, user software
+should not wrIte ones to
+| reserved bIts.
+
+## Trang 47
+ (2) SPI Data Register
+ (S0SPDR - 0xE0020008)
+° This bi-directional data register provides the
+transmit and receive data for the SPIL.
+° Transmit data is provided to the SPI by writing
+to this regIsfer.
+* Data received by the SPI can be read from thIs
+T€ĐØIS{CT.
+
+## Trang 48
+y Data Registers
+Master Slave
+suy
+ø]ïT2T3T25T5]]+——>ITT5T5TeT]
+
+[Sơ đồ trang 48: giống sơ đồ trang 23 (hai thanh ghi dịch 8 bit tạo bộ đệm vòng giữa Master và Slave), có thêm chú thích "Data Registers" chỉ vào hai ô Memory của Master và Slave — đó chính là các thanh ghi dữ liệu SPI.]
+## Trang 49
+
+
+° There is no buffer between the data register and
+the Internal shIft register. ÀA wrIte to the data
+register øoes directly Into the Internal shift
+T€Ø1S{€T.
+
+° Therefore, data should only be writfen to th1s
+register when a transmit is not currentÏy in
+DTOÿT€SsS.
+
+## Trang 50
+
+
+° Read data is buffered.
+
+° When a transfer is complete, the recerve data 1s
+transferred to a single byte data buffer, where 1t
+1S later read.
+
+° A read ofthe SPI data register returns the value
+of the read data buffer.
+
+## Trang 51
+ SPI Data Register
+— (S0SPDR - 0xE0020008)
+Bit Symbol Description
+7:0 DataLow SPI bi-directional data port.
+15:8 DataHigh If bit 2 ofthe SPCR is I and bits
+11:8 are other than 1000, some
+or all of these bits contaIn the
+additional transmit and receIve
+bits. When less than 16 bIts are
+selected, the most signifIcant
+among these bits read as zeroes.
+
+## Trang 52
+ (3) SPI Status Register
+——. (S0SPSR - 0xE0020004)
+Bit Syvmbol Description
+7 SPIF  SPI transfer complete flag.
+When l, this bit Iindicates when a
+SPI data transfer is complete.
+'When a master, this bIt is set at the
+end of the last cycle of the transfer.
+
+## Trang 53
+ SPI Status RegtIster
+— (S0SPSR - 0xE0020004)
+Bit Symbol Description
+7 SPIF SPI transfer complete flag.
+When a slave, this bit is set on the
+last data sampling edge of the SCK.
+Thịs bịt is cleared by first reading
+this register then accessing the SPI
+data register.
+
+## Trang 54
+ SPI Status Register
+ (S0SPSR - 0xE0020004)
+Bit Symbol  Description
+6 WCOL Write Collision. When 1, this bit
+Iindicates that a wrIte collision has
+occurred. This bit is cleared by
+reading this register then accessing
+the SPI data register.
+
+## Trang 55
+V‹ Exception conditions —WrIte Collision
+_—=2z=--__
+* As sfated prevIously, there is no wrIfe
+buffer between the SPI block bus
+Inferface, and the Internal shIft repIster.
+*® As aresult, đdata must not be wriften fo
+the SPI data register when a SPI data
+transfer is currentÌy in progress.
+
+## Trang 56
+
+
+°Ổ The time íframe where data cannot be written to the
+SPI data register is from when the transÍfer sfarts,
+unfil after the status register has been read when the
+SPIF status is acfive.
+
+*[f the SPI data register is wriften in this time frame,
+the write data wIll be lost, and the write collision
+(WCOL) bit in the sfatus register wIll be acfivated.
+
+## Trang 57
+ SPI Status Register
+ (S0SPSR - 0xE0020004)
+Bit Symbol  Description
+5_ ROVR Read overrun. When l1, this bit
+Indicates that a read overrun has
+occurred. Thịs bit is cleared by
+reading this register.
+
+## Trang 58
+ Exception conditions Read Overrun
+—“z=-____
+*° A read overrun occurs when the SPI block internal
+read buffer contains data that has not been read by the
+processor, and a new transfer is completed.
+° The read buffer containing valid dafa is Indicated by
+the SPIF bit in the status register beIng active.
+
+## Trang 59
+V‹ Exception conditions Read Overrun
+_—=2z=--__
+°When a transfer completes, the SPI block needs to
+move the received data to the read buffer.
+° JIf the SPIF bịt is active (the read buffer is full),
+the new receive data will be lost, and the read
+overrun (ROVR) bịt In the status register wIll be
+acfivated.
+
+## Trang 60
+ SPI Status Register
+l (S0SPSR - 0xE0020004)
+Bit Symbol  Description
+4 MODFE  Mode fault. when 1, this bit
+Iindicates that a Mode fault error
+has occurred. This bit is cleared
+by reading this register, then
+wrIfing the SPI Control register.
+
+## Trang 61
+ Exception condIfions —Mode Fault
+_—2z=-___
+° [fƒ the SSEL signal goes active, when the SPI
+block is a master, this Indicates another master has
+selected the same device to be a slave. This
+condHition is known as a mode fault.
+° When a mode fault is detected, the mode fault
+(MODF) bit In the sfatus register wIll be activated.
+
+## Trang 62
+ SPI Status Register
+— (S0SPSR - 0xE0020004)
+Bit Symbol  Descriptlon
+3 ABRT Slave abort. When l, this bit
+Indicates that a slave abort has
+Occurred. Thịs bit is cleared by
+reading this register.
+200 - Reserved, user software should not
+WrIfe ones to reserved bIts.
+
+## Trang 63
+ Exception conditions —Slave Abort
+_—=2z=--__
+
+*® A slave transfer is considered to be aborted,
+1f the SSEL sIgnal øoes inacftive before the
+transfer is complete.
+
+* In the event of a slave abort, the transmit and
+receive đata for the transfer that was In
+progress are lost, and the slave abort(ABRT)
+bit in the status register wIll be activated.
+
+## Trang 64
+V:⁄‹U SPI Interrupt Register
+ (S0SPINT - 0xE002001C)
+° This register contains the interrupt flag for the
+SPI Immterface.
+Bit Symbol  Description
+0  SPI SPI Interrupt flag. Set by the SPI
+Interrupt  Interface to øenerafe an inferrupt.
+Flag Cleared by writing a Ï to this bịt.
+J3] - Reserved, user software should
+not wrife ones fo reserved bits.
+
+## Trang 65
+ SPI Clock Counter Register
+(S0SPCCR - 0xE002000C)
+« This reglister controls the frequency ofa
+master s SCK.
+e The register Indicates the number of PCLK
+cycles that make up an SPI clock.
+« The value of this register must always be
+an even number. As a result, bit 0 must always
+be 0.
+
+## Trang 66
+ Configuration
+* SPI can be configured as MASTER or
+SLAVE.
+
+## Trang 67
+ ConfiguratIlon - Master operatlon
+° The following sequence describes how
+one should process a data transfer with
+the SPI block when 1t is set up to be the
+maSf€T.
+e This process assumes that any prIor
+data transfer has already completed.
+
+## Trang 68
+V‹ở Configuration - Master operation
+_—2z=-___
+l. Set the SPI Clock counter register to
+the desired clock rate.
+2. Set the SPI Control register to the
+đesired settings.
+3. Write the data that transmitted to the
+SPI data register. This write starts the
+SPI data transfer.
+
+## Trang 69
+V‹9 Configuration - Master operation
+_—2z=-___
+4. Walt for the SPIF bit in the SPI status
+regIsfer to be set to 1l. The SPIF bịt
+wIll be set after the last cycle of the
+SPI data transfer.
+5. Read the SPI status regIsfer.
+
+## Trang 70
+V‹ở Confipuration - Master operatlon
+=>
+6. Read the recerved data from the SPI
+đata register (optional).
+7.Go to step 3 1ƒ more dafa is required
+to transmIt.
+
+## Trang 71
+ Configuration - Master operation
+NOIE:
+
+° A read or wrIfe ofthe SPI data register
+1S required in order to clear the SPIF
+sfatus bịt.
+
+© Therefore, 1f the optional read of the
+SPI data register does not take place, a
+wrIfe fo this reg1sfer is requ1red in
+order to clear the SPIF status bịt.
+
+## Trang 72
+V‹9 Configuratlon - SÏlave operation
+=>
+° The followIng sequence descrIbes how
+one should process a data transfer with
+the SPI block when 1t is set up to be the
+slave.
+e This process assumes that any prIor
+đata transfer has already completed.
+
+## Trang 73
+ Configurafion - SÏlave operation
+=>
+l. Set the SPI control reg1ster to the
+đesired settIngs.
+2. WrIte the data to transmitted to the SPI
+data register (optional). Note that this
+can only be done when a slave SPI
+transfer is nof in progress.
+
+## Trang 74
+ Confipuration - Slave operation
+—“z=-____
+3. Walt for the SPIF bit in the SPI staftus
+regIsfer to be set to lI. The SPIF bit
+WIll be set after the last sampling
+clock edege of the SPI data transfer.
+4. Read the SPI status register.
+
+## Trang 75
+V‹9 Configuratlon - SÏlave operatlon
+=>
+5. Read the recerved data from the SPI
+đata register (optional).
+6. Go to step 2 1ƒ more dafta is required to
+transmIt.
+
+## Trang 76
+V‹9 Configuration - Slave operation
+NOIE:
+
+° A read or wrife of the SPI data register
+is required in order to clear the SPIEF
+status bit.
+
+« Therefore, at least one of the optional
+reads or wrIfes of the SPI data reg1ster
+must take place, in order to clear the
+SPIF status bịt.
+
+## Trang 77
+y‹U
+| Pros and Cons
+
+## Trang 78
+ Advantages
+_—2z=-___
+* Eull duplex communIcatIion
+° Higher throughput than ỨC
+° Complete protocol flexibility for the bits
+transferred
+* Not limited to §-bIt words
+* Arbitrary choIce of message s1ze,
+confent. and purpose
+
+## Trang 79
+ Advantages
+° Extremely simple hardware interfacing
+* JypIcally lower power requirements than
+ỨC due to less cIrcuIfry
+* No arbtfration or assocIafed failure modes
+* Slaves use the master's clock, and don't
+need precIsion oscIllators
+* Transce1vers are not needed
+
+## Trang 80
+ Disadvanfages
+° Requires more pIns on [C packages than
+ỨC, even in the "3-Wre” varlant
+°Ò No hardware flow conftrol
+°® No hardware slave acknowledgment (the
+master could be "talking” to nothing and not
+know 1t)
+
+## Trang 81
+ DIsadvantages
+* Supports onÌy one master device
+° Only handles short distances compared
+to RS-232, RS-485, or CAN-bus
+
+## Trang 82
+ Applicatlons
+SPI is used to taÏk to a varlety of
+perIpherals, such as:
+°Sensors: Temperature, pressure, ADC,
+touch-screens
+«Control devices: audio codecs, digttal
+potentIlometers, DAC
+
+## Trang 83
+V‹ủ Applications
+*° Memory: flash and EEPROM
+° Real-time clocks
+°® LCD displays, sometimes even for
+managing 1mage data
+*° Any MMC or 5D card
+
