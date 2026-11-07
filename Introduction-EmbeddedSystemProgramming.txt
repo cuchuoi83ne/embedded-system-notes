@@ -1,0 +1,143 @@
+# Introduction - Embedded System Programming
+(Trích xuất từ file PPTX: 21 slides)
+
+## Slide 1
+Giới thiệu về Hệ thống Nhúng
+Embedded Systems - CE2001
+TS. Nguyễn Nhật Ân
+[Đã lược email, SĐT và ngày sinh của giảng viên vì Gist công khai]
+
+## Slide 2
+Giảng viên
+TS. Nguyễn Nhật Ân
+Khoa Kỹ thuật máy tính và Điện tử
+Trường đại học công nghệ thông tin và truyền thông Việt-Hàn(VKU), Đại học Đà Nẵng
+2009-2014, Kỹ sư Hệ thống nhúng, Đại học bách khoa Đà Nẵng
+2017-2020, Thạc sĩ Kỹ thuật máy tính, Đại học Yeungnam, Hàn Quốc
+2020-2024, Tiến sĩ kỹ thuật điện-điện tử, Đại học Soongsil, Hàn Quốc
+
+## Slide 3
+Định nghĩa hệ thống nhúng
+Hệ thống máy tính chuyên dụng
+Tích hợp vào thiết bị để thực hiện một hoặc một số chức năng cụ thể
+Bao gồm: vi điều khiển/vi xử lý, bộ nhớ, ngoại vi và phần mềm điều khiển
+
+## Slide 4
+Đặc điểm hệ thống nhúng
+Chuyên biệt, tối ưu cho một nhiệm vụ
+Hoạt động trong thời gian thực
+Tiêu thụ năng lượng thấp
+Kích thước nhỏ gọn, chi phí tối ưu
+
+## Slide 5
+Thành phần cơ bản
+CPU/Vi điều khiển
+Bộ nhớ (RAM, ROM, Flash)
+Ngoại vi (GPIO, UART, SPI, I2C...)
+Phần mềm điều khiển (firmware)
+
+## Slide 6
+Phần mềm nhúng
+Firmware
+Hệ điều hành thời gian thực (RTOS)
+Trình điều khiển thiết bị
+Ứng dụng mức cao
+
+## Slide 7
+Phân loại hệ thống nhúng
+Hệ thống đơn giản
+Hệ thống phức tạp
+Hệ thống thời gian thực
+Hệ thống dựa trên mạng (IoT)
+
+## Slide 8
+So sánh với máy tính thông thường
+Máy tính: đa nhiệm, đa mục đích
+Hệ thống nhúng: chuyên dụng, tối ưu cho một nhiệm vụ
+Máy tính: tài nguyên dồi dào
+Hệ thống nhúng: tài nguyên hạn chế
+
+## Slide 9
+Ứng dụng trong đời sống
+Điện thoại thông minh
+Thiết bị IoT trong gia đình
+Đồ gia dụng (máy giặt, lò vi song…)
+Các mạch chứng năng trong các hệ thống lớn
+
+## Slide 10
+Ứng dụng trong ô tô
+Hệ thống điều khiển động cơ (ECU)
+Hệ thống chống bó cứng phanh (ABS)
+Túi khí an toàn
+…
+
+## Slide 11
+Ứng dụng trong y tế
+Máy trợ tim
+Máy đo huyết áp
+Máy chụp MRI, CT
+Máy đo điện não
+Máy đo điện tim
+
+## Slide 12
+Ứng dụng trong công nghiệp
+Robot công nghiệp
+Dây chuyền sản xuất tự động
+Cảm biến giám sát
+Cảm biến an toàn
+Hệ thống đảm bảo chất lượng
+
+## Slide 13
+Ứng dụng trong quốc phòng
+Vũ khí thông minh
+UAV (drone quân sự)
+Hệ thống radar và liên lạc
+
+## Slide 14
+Ngoại vi cơ bản: GPIO
+General Purpose Input/Output
+Kết nối với LED, nút nhấn, cảm biến
+Điều khiển tín hiệu số
+
+## Slide 15
+Ngoại vi truyền thông: UART
+Universal Asynchronous Receiver Transmitter
+Truyền dữ liệu nối tiếp không đồng bộ
+Ứng dụng: giao tiếp với máy tính, module GPS
+
+## Slide 16
+Ngoại vi truyền thông: SPI
+Serial Peripheral Interface
+Giao tiếp tốc độ cao, đồng bộ
+Ứng dụng: kết nối cảm biến, thẻ nhớ
+
+## Slide 17
+Ngoại vi truyền thông: I2C
+Inter-Integrated Circuit
+Giao tiếp 2 dây (SCL, SDA)
+Ứng dụng: cảm biến, EEPROM, RTC
+
+## Slide 18
+Ngắt (Interrupt)
+Cơ chế xử lý sự kiện tức thì
+Tạm dừng chương trình chính để xử lý sự kiện
+Ứng dụng: phản ứng nhanh với tín hiệu ngoại vi
+
+## Slide 19
+Máy trạng thái hữu hạn (FSM)
+Mô hình điều khiển hệ thống
+Quản lý trạng thái và chuyển đổi
+Ứng dụng: giao thức truyền thông, điều khiển robot
+
+## Slide 20
+Xu hướng phát triển
+Internet of Things (IoT)
+AIoT (AI + IoT)
+Edge Computing
+Hệ thống nhúng an toàn và bảo mật
+
+## Slide 21
+Tổng kết
+Hệ thống nhúng là nền tảng của công nghệ hiện đại
+Ứng dụng rộng rãi trong đời sống và công nghiệp
+Là học phần quan trọng để sinh viên phát triển kỹ năng thiết kế, lập trình, tích hợp hệ thống

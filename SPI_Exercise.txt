@@ -1,0 +1,61 @@
+# SPI Exercise - Bit-banging SPI protocol (8051)
+(Trích xuất từ file PDF: 2 trang)
+
+SPI Exercise
+                               Bit-banging SPI protocol
+
+
+In this exercise, you will explore the Serial Peripheral Interface protocol by implementing it from
+scratch on the 8051 microcontroller. We will use the bit-banging technique to manually control
+the clock and data lines through general-purpose input and output pins (you can use GPIO
+register technique in last class). For all programming tasks in this assignment, your C source
+code must be written completely from scratch without using any external or standard header
+files, not even the reg51.h library. You are required to define bit-addressable pins directly using
+their physical memory addresses. Furthermore, every single line of your code must be clearly
+commented in English, and you will be asked to explain the exact function and hardware impact
+of each statement during the class assessment.
+
+
+
+1. For the first exercise, your goal is to configure the 8051 microcontroller to transmit data
+packets using the bit-banging technique. You will design a simulation circuit in Proteus that
+connects four pins on the 8051 to the SPI Debugger(virtual instrument), which represents the
+Chip Select, Serial Clock, Master Out Slave In, and Master In Slave Out lines. Your program
+should initialize the communication bus in Mode 0 and continuously send a multi-byte data
+packet containing a synchronization byte, an incrementing counter, and a few ASCII characters.
+While running the simulation, observe the virtual debugger window to verify that your
+connection is working properly and that the transmitted hexadecimal values match the data array
+defined in your C program.
+
+
+2. In the second exercise, the 8051 will receive and process external data by interfacing it with a
+Microchip TC72 digital temperature sensor. In this setup, the sensor sends temperature readings
+to the microcontroller over the serial bus whenever the microcontroller requests them. After
+reading the temperature byte from the sensor, the 8051 must output this value directly to another
+port connected to a bank of eight LEDs to display the binary value, or to seven-segment displays
+to show the decimal temperature. Keep the SPI Debugger connected to the communication lines
+in Monitor mode to verify the data packets exchanged between the microcontroller and the
+sensor. During the simulation, manually adjust the temperature up and down on the TC72
+component to confirm that the displayed output updates accurately in real time.
+
+
+3. While performing the second exercise, pay close attention to the output log of the SPI
+Debugger when it is connected directly to the communication bus alongside the TC72 sensor.
+You will need to confirm whether the transmitted and received temperature data are fully
+displayed on the debugger window, explain the reason for the behavior that you obverse. Finally,
+propose and implement solutions so that both the temperature sensor and the debugger can
+capture and display the complete data frames simultaneously.
+In-class demonstrations can earn up to 2 bonus points. Reports without a live demo are capped at
+a maximum score of 8. In the report of this exercise, you need to include:
+
++ Circuit picture in proteus for each exercise.
++ Result pictures.
+
++ Explanation for the observed result in circuit and SPI debugger.
+
++ Source code for each exercise.
++ Detailed explanation for the source code.
+
+The report should be submitted in PDF format on E-learning system. This is an individual
+assignment. Any copying or identical content between students will result in minus points
+for both.

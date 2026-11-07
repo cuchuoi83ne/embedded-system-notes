@@ -1,0 +1,1119 @@
+# Embedded System Development
+(Trích xuất từ file PPTX: 153 slides)
+
+## Slide 1
+Embedded systems Development
+
+## Slide 2
+INTRODUCTION
+
+## Slide 3
+DEFINITIONS OF EMBEDDED SYSTEMS
+Function: organize or carry out one or more 	tasks based on a set of rules, plans, programs.
+.Combine and arrange functional units to 	perform tasks together.
+For example: clock, washing machine...
+
+## Slide 4
+DEFINITIONS OF EMBEDDED SYSTEMS
+A system where hardware is integrated with software to 	execute a certain application, or part of an application 	in a larger system.
+A  system  that  has  software  with  certain  functions 	embedded in the computer.
+Is  a  hardware  system  for  a  certain  product  or 	application. It can be a stand-alone system or part of a 	larger system. Software is embedded in ROM or flash.
+
+## Slide 5
+MAIN PARTS
+Hardware (ROM, RAM, EEPROM, I/0,
+processor, Power supply …).
+Software
+Real time Operating System (RTOS).
+
+## Slide 6
+EXAMPLES
+
+## Slide 7
+EXAMPLES
+
+## Slide 8
+Features of complicated Embedded Systems
+Dedicated functions
+Dedicated complex algorithms
+GUI and user interface
+Real time operations
+Multi- rate operations: audio, video …
+
+## Slide 9
+System Requirements
+Memory
+Processing speed
+Low energy consumption
+
+## Slide 10
+Design Requirements
+Performance
+Power
+Size
+Design cost
+Packaging cost
+
+## Slide 11
+Design Requirements
+
+## Slide 12
+Design Process
+Trang
+Identify objectives/requirements of system
+Identify the structure of hardware, software
+The additional functions
+Researching the similar design
+Divide into modules (hardware, software)
+Mapping
+Design system interface
+Update system
+
+## Slide 13
+Design Process
+Trang
+
+## Slide 14
+Main parts of Embedded Systems
+Processors
+Basic circuit blocks
+Power Source
+Clock
+Reset Circuit
+Memory
+IO ports
+DAC/ADC
+LED, LCD
+Trang
+
+## Slide 15
+Processor of Embedded Systems
+Trang
+General purpose processor: Intel 80x86, Sparc, or 	Motorola 68HCxxx
+ASIP (Application Specific Instruction-Set Processor): 	DSP, media, IO, network
+Single Purpose processor
+Multiprocessor
+
+## Slide 16
+Application-specific instruction set processor
+1.	Small Scale Embedded System
+Trang
+
+## Slide 17
+Application-specific instruction set processor
+2. Medium Scale Embedded Systems
+Trang
+
+## Slide 18
+Application-specific instruction set processor
+3. Large Scale Embedded System
+Trang
+
+## Slide 19
+Single Purpose processor
+Trang
+Floating point Coprocessor
+Pixel coprocessor
+Image codec in digital camera
+Graphic processor
+Speech processor
+Adaptive filtering processor
+Encryption engine
+Decryption engine
+Communication protocol stack processor
+
+## Slide 20
+Multicore processors
+Trang
+Multiprocessor system for Real time performance in a video-conference system.
+Embedded firewall cum router
+High-end cell phone
+
+## Slide 21
+Application Programing: C++, Java.
+Device driver Programing: C, C++
+Android, web (basic) Programing.
+Script: Perl, Python, Shell script in Linux
+Good data structure and algorithms
+Trang
+Software Requirements for Embedded Systems
+
+## Slide 22
+Hardware of Embedded Systems and 8051
+
+## Slide 23
+Hardware Overview of Embedded Systems
+Hardware Overview of Embedded Systems
+CPU (Central Processing Unit): Executes instructions and processes data
+Memory: Program and data memory
+Peripheral: Input / output devices
+Bus: transmits signals between components
+
+## Slide 24
+CPU
+Basic CPU block diagram includes:
+ALU: Computational and logic unit
+CU: Control unit
+Memory Unit: Some memory is built into the CPU to support storage and fast calculations.
+
+## Slide 25
+CPU
+Process of executing a command:
+Load instructions from memory into CU
+CU Decodes the command
+The ALU executes the command
+The results are saved in memory
+
+## Slide 26
+CPU
+ISA (Instruction Set Architecture):
+CISC (Complex Instrucstion Set Computing)
+RISC (Reduce Instrucstion Set Computing) - ARM
+v
+
+## Slide 27
+CPU
+Microcontroller	is	considered
+circuit
+as	a	fully	integrated with components:
+Processor
+Memory
+(GPIO,
+Timer,
+Peripherals SPI..)
+For example:
+Processor: Core i3, i5, i7…
+Microcontroller: PIC, AVR…
+
+## Slide 28
+Embedded System Architecture
+Von-Neumann & Harvard
+
+## Slide 29
+Memory and memory design
+Memory is a	means	of storing information including programs and data.
+Some basic information about computer memory.
+
+## Slide 30
+Memory and memory design
+Classification:
+
+## Slide 31
+Memory and memory design
+Memory hierarchy model:
+
+## Slide 32
+A memory chip is a specific microchip, arranged with basic pins.
+The pins of a typical memory chip include address bus inputs, data inputs, chip select control pins, write/read and power pins.
+For example: a 1Kx4 static RAM (1024 “memory words”, each word is 4 bits long
+Physical memory organization and memory design
+
+## Slide 33
+Designing memory from available memory chips has the following steps:
+1. Determine the number of memory chips to create the required memory capacity according to the formula:
+M= Q/D, whereas
+Q is the capacity of memory.
+D is the capacity of each chip
+M is the number of memory chips needed.
+2.  Determine  the  number  of  base  address  wires  (ie  the  number  of  low  address  wires connected directly to the memory chip or interconnect chip): according to the following expression:
+2m = D , whereas
+m is the wire number of the base address. D is the capacity of each chip
+3. Determine the number of address lines to create chip select according to the following expression:
+2i = M , whereas
+D is the capacity of each chip
+i is the number of wires needed to decode the signals chip select signal (Csi)
+Physical memory organization and memory design
+
+## Slide 34
+Design Static RAM
+Build a 16Kbyte memory based on 16Kx1bit SRAM chips. The 16Kbyte SRAM memory tape is built on the basis of 8 16K x 1bit SRAM chips, to obtain a memory cell with a length of 8 bits.
+Physical memory organization and memory design
+
+## Slide 35
+Design DRAM
+DRAM MK 4164 is 64K bit DRAM in 1 Chip. Assuming we will design RAM for the 8085 CPU with a maximum RAM of 64 KB, 8 Chips will be needed.
+Physical memory organization and memory design
+
+## Slide 36
+ROM/EPROM
+Build a ROM module with a capacity of 32KB, using Chip 2764 8K x 8 bits, the  first  address  is  20000hex.  The  application  program  loads  into  this module.
+Physical memory organization and memory design
+
+## Slide 37
+Model of coupling technique
+Pair with peripheral devices
+
+## Slide 38
+8051 microcontroller architecture
+Basic 8051 architecture:
+microprocessor
+registers
+memory (in Harvard architecture)
+ports
+counters/timers
+I/O
+interrupt	handlers
+
+## Slide 39
+Characteristics of 8051
+12	MHz	clock.	Processor	instruction cycle time 1 μs.
+ALU-8bit
+Harvard Memory Architecture
+Internal 8-bit data bus and Internal 16- bit address bus
+CISC instruction set architecture
+8051 microcontroller architecture
+
+## Slide 40
+Characteristics of 8051
+Special Registers (SFR)
+PSW (status word)
+A (cumulative)
+Register B, SP (stack pointer)
+Registers	for	I/O,	timers,	ports,	and interrupt handlers
+16-bit	program	counter	(PC)	with	factory default value of 0x0000.
+8-bit	stack	pointer	(SP)	with	an	initial default value of 0x07
+8051 microcontroller architecture
+
+## Slide 41
+Characteristics of the simple 8051:
+Does not handle floating point
+No Cache
+There is no MMU memory management unit
+There is no atomic operations unit.
+There is no CPU Pipeline engineering
+Do not process commands in parallel.
+8051 microcontroller architecture
+
+## Slide 42
+Features of 8051:
+RAM size 128bytes
+The 32 bytes of RAM are used as four register sets (register-set/bank). Each bank has 8 registers.
+Stack memory/External data memory can be added up to 64 kB.
+8051 microcontroller architecture
+
+## Slide 43
+Some improved versions of the 8051
+Version 8351 has on-chip ROM
+Version 8751 uses EPROM
+Version 8951 uses on-chip EEPROM or 4 kB flash memory.
+In	the	extended 8051 versions	the address space is expanded up to 16 MB.
+8051 microcontroller architecture
+
+## Slide 44
+Features of 8051:
+Two interrupt pins 12 and  13 INT0 and INT1.
+Four ports of 8 bits each (P0, P1, P2, P3)
+Two timers T0, T1.
+Serial Interface (SI) – programmable for three full-duplex UART modes for I\O
+8051 microcontroller architecture
+
+## Slide 45
+Features of 8051:
+In	some	versions	–	there	is	a	DMA controller, a pulse width modulator
+modems,	watchdog	timers,
+In	some	versions	of	the	8051,
+and
+ADCs were also integrated.
+For  example,  the  Siemens  SAB 80535-N  supports  an  ADC  with  a programmable reference voltage.
+8051 microcontroller architecture
+
+## Slide 46
+8051 microcontroller architecture
+8051 INSTRUCTION SET ARCHITECTURE
+Data transfer commands are:
+Move	bytes	between	register	A	and another register
+Move	bytes	from	one	register/from internal RAM to another register
+Indirect move:
+MOVC indirect
+MOVX indirect
+Instant migration:
+MOV immediate DPTR
+Push or Pop direct
+
+## Slide 47
+8051 microcontroller architecture
+Manipulates	bits,	bytes,	and	logic instructions
+Bit manipulation:
+Set value, add value with commands like AND, OR or MOV (Clr, Set, Mov…)
+Logical command:
+Logical instructions AND, OR, XOR
+Byte operations:
+Delete,	add	or swap	commands	and rotation commands (CLR, RL, RC…)
+
+## Slide 48
+8051 microcontroller architecture
+Math commands:
+These are 8-bit instructions
+Add	(Add),	subtract	(Sub),	multiply	(Mul), divide (div)
+Increase or decrease orders:
+Inc (Increment), Dec (Decrement)
+
+## Slide 49
+8051 INSTRUCTION SET ARCHITECTURE
+Program flow control commands:
+Branching
+Conditional jump command
+Comparison command
+Subprogram call
+NOP command
+Delay command
+Break command:
+Flow control interrupt mask bits, priority bits
+RETI
+
+## Slide 50
+8051 I/O Port
+8051 has 4 input and output ports: P0, P1, P2, P3:
+It is an 8 bit input and output port
+The addresses are 0x80, 0x90, 0xA0, 0xB0 respectively
+Each	bit	of	port	P0	is	denoted	P0.0	to	P0.7	corresponding	to addresses 0x80 to 0x87.
+Similar to P1, there are 8 ports P1.0 to P1.7 corresponding to addresses 0x90 to 0x97. P2.0 to P2.7 are addresses 0xA0 to 0xA7, P3.0 to P3.7 are addresses 0xB0 to 0xB7.
+For example:
+MOV 0xA0, #0x0F ; means assigning value to port P2 bits is 0000 11112
+INC 0xA0 ; P2 = 0000 11112 + 1 = 0001 00002
+
+## Slide 51
+The pins of P0 are both the low
+8	bits	of	the	address	bus	and the data bus
+8051 I/O Port
+P0 và P1 ports
+
+## Slide 52
+The	pins	of	P2	are	the	high	8 bits of the address bus
+8051 I/O Port
+P2 và P3 ports
+
+## Slide 53
+Input and output circuit of 8051
+The circuit of input	and output ports controls stepper motors used in printers
+
+## Slide 54
+Input and output circuit of 8051
+Circuit of input and output ports for six servo motors in the robot
+
+## Slide 55
+Programming 8051 input and output
+Byte addresses of I/O ports P0, P1, P2 and P3 of the 8051 used to access and execute read or write or other commands
+The direct 8-bit address of each address is given in the instructions
+For  example:  MOV  0xA0,  #0x0F  ;  means  assigning values to the bits of port P2 is 0000 11112
+The addresses of the bytes at P0, P1, P2 and P3 are 0x80, 0x90, 0xA0 and 0xB0 respectively.
+
+## Slide 56
+Programming 8051 input and output
+For example:
+MOV 0xA0, #0x0F ;
+INC 0xA0 ;
+That	means assigning	values to the	bits of	port	P2	is 0000 11112
+Then port P2 will be increased by 1 value
+P2 = 0000 11112 + 1 = 0001 00002
+
+## Slide 57
+Programming 8051 input and output
+Byte programming using 8051 ports
+v Ports P0, P1, P2 and P3 each have 8 bits
+v Each	bit	has	an	address	to	access	and	perform reading or writing using bit manipulation instructions.
+v Address is the bit address of the pins. Each bit address is specified in the corresponding instruction.
+§	Bit addresses P0.0 to P0.7 correspond to 0x80 to 0x87.
+§	Bit addresses P1.0 to P1.7 correspond to 0x80 to 0x97.
+§	Bit addresses P2.0 to P2.7 correspond to 0xA0 to 0xA7.
+§	Bit addresses P3.0 to P3.7 correspond to 0xB0 to 0xB7.
+
+## Slide 58
+Programming 8051 input and output
+Byte programming using 8051 ports
+v For example:
+§	CPL 0x90 ; Port P1 is assigned the value 0
+§	CLR 0x80 ; P0.0 has a value of 0.
+§	SETB 0x80; P0.0 has a value of 1.
+§	CLRB 0x80; Assign P0.0 to a value of 1.
+
+## Slide 59
+Pair with external storage
+The memory and ports in the 8051 are both assigned addresses, each port has its own address range in the data memory address space.
+The communication circuitry is identically designed for the memory  to connect to the external and programmable peripheral (PPI) ports.
+
+## Slide 60
+Pair with external storage
+Connection to external program and data memory circuits
+
+## Slide 61
+Pair with external storage
+The interface uses the PPI external port of the 8051
+
+## Slide 62
+Pair with external storage
+Port P0 in extension mode and ALE signal
+The AD0-AD7 pins of port P0 are multiplexed signals of the low address bits A0-A7 of the address bus and bits D0-D7 of the data bus.
+Time division multiplexing of signals A0-A7 and D0-D7 based on the address latch enable (ALE) processor signal
+
+## Slide 63
+Pair with external storage
+Harvard memory architecture
+There are two memories ─ program memory and data memory.
+Two control signals ─ PSEN and RD to control reading from program memory or data memory.
+ALE	control	signal	to	control	the	use	of	AD0-AD7	as address or data at a given instance
+
+## Slide 64
+Pair with external storage
+EA control signal
+Is a signal that when enabled ─ the processor always accesses external memory addresses instead of internal memory or register addresses
+
+## Slide 65
+Pair with external storage
+External address RAM, Register, program memory when EA control signal is not active
+VXL always accesses external memory whether EA is active or not.
+RAM addresses and registers are between 0x00 and 0xFF just like external data memory addresses are between 0x0000 and 0xFFFF.
+Internal program memory addresses 0x0000 to 0xFFF (in the case of 4 kB internal ROM) are the same as external program memory addresses 0x0000 and 0xFFFF.
+
+## Slide 66
+Counter - Timer
+Counter/timer devices
+The original 8051 family had two timers T0 and T1
+The 8052 family (extension of 8051) has three timers T0,
+T1 and T2
+Counting/timing device used as a timer
+A timing device when counting inputs are provided by a clock.
+Clock pulses are given at specified intervals: acting as a timer.
+Counting/timing device used as counter
+A counting device when the inputs are for counting. The counter is provided with input to count from the external input pin.
+
+## Slide 67
+v Timer T0 and T1
+v TMOD special register
+v TCON special register on four bits
+v Four external P3 pins for external control and external counting input
+v Modes 0, 1, 2, 3 of T0
+v Modes 0, 1 and 2 of T1
+Counter - Timer
+
+## Slide 68
+Counter - Timer
+Timing and counting devices External controls to activate or deactivate running
+When timing or counting devices are externally controlled by gate input, when GT0 or GT1 is externally triggered, the device can operate otherwise it will shut down in gate input mode.
+The GT0 or GT1 signal is given at P3.2 and P3.3.
+
+## Slide 69
+Counter - Timer
+Counter/timing device External counting input in counter mode
+T0 count T0 is given input for counting from the external input T0 pin at P3.4.
+T1	counts	when	T1	is given	input	to	count	from	external input pin T1 at P3.5.
+
+## Slide 70
+Counter - Timer
+Two special registers TH1-TL1
+To access the	number or time of the	higher	8 bits and lower 8 bits of device T1
+Two 16-bit storage registers of the T1 device.
+Two special registers TH0-TL0
+To access the	number or time of the	higher 8 bits and lower 8 bits of device T0
+Two registers store 16 bits of device T0.
+
+## Slide 71
+Counter - Timer
+TMOD special register
+Controls	T1	and	T0	modes	using	4	bits	per	mode, programming count/timing of T1 and T0.
+One bit in each function controls whether the external port input controls or not.
+A bit that controls the function for which counter or timer mode is used.
+Two	bits	control	the	function	mode	of	the	timer/counter such as mode 0 or 1 or 2 or some other action
+
+## Slide 72
+Counter - Timer
+Special register TCON Control and status bits T1 and T0
+The four bits 4 above program the counting/timing device modes T1 and T0.
+TCON.7	and	TCON.5	show	the	timer/counter	overflow status for T1 and T0, respectively.
+TCON.6	and	TCON.4	control	the	start	and	stop	of	the timer/counter
+The lower bits of TCON are for interrupt control for INT0 and INT1
+
+## Slide 73
+Counter - Timer
+Timer/Counter T0
+8 register bits TMOD (lower 4 bits), TCON (bits 5 and 4), TL0 (count/time bit), TH0 (count/time bit)
+Counter with input at P3.4 when bit 2 TMOD = 1, timer with internal clock timing input when bit 2 TMOD = 0
+When mode is set = 0, 8-bit Timer/Counter mode and TH0 are used and TL0 is used to pre-scale (divide) the input by 32
+When mode is set = 1, 16-bit timer/counter mode with TH0-TL0 is used for timing or counting
+
+## Slide 74
+Counter - Timer
+Timer/Counter T1
+8 bits used Register TMOD (upper 4 bits), TCON (bits 7 and 6), TL1 (count/time bit), TH1 (count/time bit)
+Counter with input at P3.5 when bit 6 TMOD = 1, timer with internal clock timing input when bit 6 TMOD = 0
+When mode is set = 0, 8-bit Timer/Counter mode and TH1 are used and TL1 is used to pre-scale (divide) the input by 32
+When mode is set = 1, timer/set mode đếm 16 bit với TH1-TL1 được sử dụng để định thời hoặc đếm
+
+## Slide 75
+Counter - Timer
+Timer/Counter T1
+When mode is set = 2, the 8-bit Timer/Counter TH1 is used and TL1 is used to automatically reload TH1 after timeout using the preset value at TL1
+When mode is set = 3, T1 stops because TH0 is now active instead of T1.
+
+## Slide 76
+Serial Interface function (Serial Interface)
+Half-duplex synchronous serial mode 0
+Full duplex asynchronous UART mode 1, 2 or 3
+SBUF
+SCON
+Serial data communication input/output
+
+## Slide 77
+Serial data communication input/output
+Serial Interface SI
+Programming for:
+§	SI serial interface
+§	full-duplex asynchronous UART mode
+
+## Slide 78
+Two special 8-bit registers
+v SBUF (8 bit serial receive or transmit bit register depending on whether the command is using SBUF as source or destination)
+v SCON (8-serial mode cum control bit register) and SFR PCON.7 bit
+Serial data communication input/output
+
+## Slide 79
+Serial data communication input/output
+SBUF
+v Unique register address for the transmitted and received byte buffer when serial output or input is sent.
+§	0x99 address of SI buffer.
+§	The register holds the 8-bit SI line as it is written.
+v For example:
+§	MOV	0x99,	instruction	A	writes	A	to	the	transfer	buffer from register A
+§	MOV	R1,	read	command	0x99	Register	R1	from	receive buffer
+
+## Slide 80
+Serial data communication input/output
+SCON
+v Register to control the SI interface.
+v The three bits above program modes such as 0 or 1 or 2 or 3.
+§	Mode 0 is full duplex synchronization.
+§	Mode 1 or 2 or 3 is full duplex asynchronous mode.
+§	Bit SCON.4 enables or disables the SI receiver function.
+§  The  two  bits  SCON.3  and  SCON.2  specify  the  8th  bit transmitted and the 8th bit received when the mode is 2 or 3. One  bit  SCON.1  enables  or  disables  the  SI  transmitter interrupts (TI) when complete the transmission.
+§  Bit SCON.0 enables or disables SI receiver interrupts (RI) on completion of transmission.
+
+## Slide 81
+Serial data communication input/output
+Mode function 0 – Input or output
+v Depends	on	the	instruction	using	SBUF	as	source	or destination
+§	Synchronous serial mode data and clock input
+§	Synchronous serial mode data and clock output
+v Mode 0 when SCON bits 7 and 6 (mode bits) are 00
+
+## Slide 82
+Software components of embedded systems and 8051 microprocessors
+
+## Slide 83
+MAIN CONTENT
+Device drivers
+Real-time operating system
+Middleware	and application software
+www.ptit.edu.vn
+BỘ MÔN: KHOA HỌC MÁY TÍNH – KHOA CNTT1
+Trang 2
+
+## Slide 84
+OVERVIEW OF EMBEDDED SYSTEM SOFTWARE
+v Software Overview of Embedded Systems
+v Operating System: System software
+v Application: Application software
+
+## Slide 85
+Introduction to embedded software
+www.ptit.edu.vn
+BỘ MÔN: KHOA HỌC MÁY TÍNH – KHOA CNTT1
+Trang 4
+Chapter 3: Software components
+
+## Slide 86
+Introduction to embedded software
+v Two	approaches	to		building embedded	software:	Software
+design	is	based
+on
+conventional procedures.
+§	Design	based	on	Embedded Operating System.
+www.ptit.edu.vn
+BỘ MÔN: KHOA HỌC MÁY TÍNH – KHOA CNTT1
+Trang 5
+
+## Slide 87
+Introduction to embedded software
+v Software design is based on conventional procedures.
+§	Use hyperloops for applications that do not depend on system response time.
+§	Each procedure is executed sequentially :
+1.	Configure	shared	parameters	and	perform	initialization	of	hardware components such as memory and registers.
+2. Start with the first task and execute it.
+3. Execute the second task.
+4. Execute the next task.
+5. ….
+6. ….
+7. Execute the last task.
+8. Jump to the first task and execute in a thread
+similar.
+
+## Slide 88
+Introduction to embedded software
+conventional
+v Software	design	is	based	on procedures.
+§	Advantage :
+No operating system required
+Simple design
+Low price
+§	Disadvantage:
+Easily affected by the entire system, if any an error task
+Lack of processing time
+
+## Slide 89
+Introduction to embedded software
+v Software	design	is	based	on	conventional procedures.
+
+## Slide 90
+Introduction to embedded software
+v Software	design	based	on	Embedded	Operating System:
+v An operating system contains the operating system.
+v Create and run applications on the operating system.
+v Can	be	a	generic	operating	system	or	a	real-time operating system (RTOS)
+§	General operating system:
+unifies the embedded system with the general computing system of the operating system
+support programming interfaces can be used
+§	Real-time operating system :
+embedded products require response time
+contains  a  software  responsible  for  preventing  multitasking,  planning execution  schedules,  multi-threading,  a  real-time  operating  system  that allows flexible scheduling of system resources such as CPU and memory and output several ways to communicate between tasks
+
+## Slide 91
+Introduction to embedded software
+Operating
+v Software	design	based	on	Embedded System.
+§	Advantage :
+No operating system required
+Simple design
+Low price
+§	Disadvantage:
+Easily affected by the entire system, if any an error task
+Lack of processing time
+
+## Slide 92
+3.1 Device drivers
+What is Driver?
+
+## Slide 93
+I. DEVICE DRIVER DEFINITIONS (Device driver)
+Device driver: connection between OS and I/O devices.
+Function: translate and convert requests from the OS into commands that the peripheral controller can understand.
+Is part of the OS kernel (drivers are software modules that are  built  separately  and  installed  into  the  OS  when needed).
+
+## Slide 94
+DEVICE DRIVER DEFINITIONS (Device driver)
+Examples: printer driver, Bluetooth driver...
+A complete system has many drivers installed on the operating system.
+Device drivers operate in privileged mode: need to be well designed and secured to avoid malicious code.
+
+## Slide 95
+DEVICE DRIVER DEFINITIONS (Device driver)
+
+## Slide 96
+Advantages of Device drivers
+Simplify OS operations
+Without a device driver, the OS is responsible for 	communicating directly with the hardware 	overloading the OS.
+If a new device is installed, the OS must be changed.
+
+## Slide 97
+Key design issues
+OS / Driver Communication
+§	Information exchange(command, data)
+§	Support functions that the kernel provides
+Driver / Hardware Communication
+§	Information exchange(command, data)
+§	Software communicates with Hardware
+§	Hardware communicates with Software
+Driver Internal Operations
+§	Translate command received from OS
+§	Arrange the order of requirements
+§	Manage data transmission between interfaces(OS và hardware)
+§	Accept and process interrupts
+§	Maintain consistency of data structures between driver and kernel.
+
+## Slide 98
+Types of Device Drivers
+v Block Driver
+v Character Driver
+v Terminal Driver
+v Stream Driver
+
+## Slide 99
+Block Drivers
+§	Communicates with the OS through a set of fixed-sized buffers (block of data).
+§	The OS manages the cache of caches and responds to user requests for data by accessing the cache.
+§	The driver is only called when the requested data is not in the cache or when the cache changes.
+§	The driver works with requests from the OS to fill or clear buffers of a fixed size.
+
+## Slide 100
+Block Drivers
+v Ví dụ: disks are applied as block devices.
+
+## Slide 101
+Character Drivers
+v Requests with packet sizes of any length of I/O.
+v Used for devices that communicate bytes at a time or with data blocks larger or smaller than the block drivers' data buffer.
+VD: printer
+v I/O requests are passed directly to the driver, and the driver transfers data to VXL memory.
+
+## Slide 102
+Character Drivers
+
+## Slide 103
+Block driver vs Character Drivers
+Block Driver | Character Driver
+Transfer data to the kernel buffer cache | Pass data directly to the user process
+Not suitable for devices communicating with variable size packets | Suitable for devices that communicate in packets of variable size
+Can be used to support UNIX-based devices | UNIX-based devices are not supported
+Suitable for supporting drives and hard drives | Suitable to support serial port, parallel port, network card, keyboard...
+
+## Slide 104
+Characteristics of a device driver
+v Driver is a set of entry points called by the OS.
+v One driver includes:
+§	Separate data structure for each device.
+§	Separate protocol for each driver
+v Most drivers are written in one source file.
+v The first part of the driver is called the prologue declaration.
+
+## Slide 105
+Characteristics of a device driver
+v Prologue includes: :
+§	#include
+§	#define
+§	Declare variables and their characteristics
+v The rest of the driver :
+§	Entry points (C functions are referenced by the OS)
+§	Routines (C functions interact with the driver)
+
+## Slide 106
+3.2 . Real Time Operating System (RTOS)
+
+## Slide 107
+II. Real Time Operating System (RTOS)
+Definition: is a multi-tasking operating system for applications with real-time constraints.
+Real-time constraints: require a certain delay for an event and system response.
+
+## Slide 108
+Benefits of Real Time Operating System (RTOS)
+Divide the project into smaller parts to "treat".
+Easily divide work in group work.
+
+## Slide 109
+Basic functions
+Kernel
+Process management
+Resource management
+Equipment management
+Manage I/O peripheral device systems
+Manage network devices
+
+## Slide 110
+Process management
+
+## Slide 111
+Hierarchy of priority processes
+Hierarchy	of	user	priorities,	called	static	priority hierarchy, or real-time priority hierarchy.
+Real-time priority hierarchy is higher	than static priority hierarchy and idle priority hierarchy.
+Idle	priority	tasks	run	when	there	are	no	high priority tasks running.
+
+## Slide 112
+Managing progress through intervention
+The RTOS interrupts a low-priority process when 	a  message  or  event  is  waiting  for  the  high- 	priority process.
+The RTOS has intervention points at the end of
+and	thus these
+points	by	real-time
+the	RTOS	can	be
+high
+critical  code, intervened  at priority tasks.
+A	small	portion	of	RTOS	functions	are	non- interferable.
+
+## Slide 113
+Process management by inheriting priority levels (priority inheritance)
+Priority  inheritance  allows  sharing  resources 	with low priority tasks.
+A  medium  priority  task  will  not  be  able  to 	interfere with a low priority task while it is locked 	to run with the high priority task.
+Helps improve system performance.
+
+## Slide 114
+Design of RTOS
+An embedded system with a single CPU can run only one process at a time.
+A	process	at	any	given	time	can	be	run	by	an ISR, a kernel function, or a task.
+Run threads in the kernel to increase processing speed.
+
+## Slide 115
+ISRs,
+drivers,
+RTOS design
+Provides	efficient	handling	of ISTs, streams...
+Turn interrupts on and off
+Allocate	and	deallocate	memory	at	fixed	times and memory blocks.
+Provides	efficient	scheduling,	running,	and stopping of tasks in case of multiple tasks.
+
+## Slide 116
+[Slide chỉ có hình, không có chữ]
+
+## Slide 117
+mailboxes...)
+www.ptit.edu.vn
+BỘ MÔN: KHOA HỌC MÁY TÍNH – KHOA CNTT1
+Trang 36
+RTOS design
+Managing	I/O	(devices,	files, becomes easy with RTOS
+Effectively	manage	multiple	states
+of	CPUs,
+devices	such	as	internal	and	external	hard drives, virtual devices...
+An  embedded  system  running  an  OS  makes 	working  with  multiple  inputs  simpler  (through 	drivers) and processing data easier.
+
+## Slide 118
+[Slide chỉ có hình, không có chữ]
+
+## Slide 119
+Options for RTOS
+
+## Slide 120
+Complex multitasking embedded system design requirements
+IDE
+C/C++ multitasking functions
+Real-time clock – timers
+Schedule(scheduler)
+Device drivers, device manager
+Communication	functions	between	processes, multi-threaded processing functions...
+Other functions : TCP/IP, USB port, network
+Testing and debugging software for RTOS testing
+
+## Slide 121
+Basic functions in RTOS
+
+## Slide 122
+Classification of RTOSes
+In-house Developed RTOSes
+Codes are written for specific application or 	product requirements.
+Requirements can be refined.
+
+## Slide 123
+Classification of RTOSes
+Commercial RTOSes
+Provide testing and debugging tools.
+Supports many VXL architectures (ARM, x86...)
+Support GUIs
+Supports communication with many devices and many 	different connection protocols.
+Optimized software and device support.
+Simplify the developer's coding process.
+Speed up product development.
+Save time and maintenance costs.
+
+## Slide 124
+Classification of RTOSes
+Commercial RTOSes
+Provide testing and debugging tools.
+Supports many VXL architectures (ARM, x86...)
+Support GUIs
+Supports communication with many devices and many 	different connection protocols.
+Optimized software and device support.
+Simplify the developer's coding process.
+Speed up product development.
+Save time and maintenance costs.
+
+## Slide 125
+Classification of RTOSes
+General purposes OS with RTOS
+Linux, Windows OS.
+Has a strong GUI configuration, many multimedia 	interfaces, and low price.
+Supports GUIs
+
+## Slide 126
+III. Middleware, Application
+Middleware: located in many places, separate from the app, OS, and drivers.
+Application: The software sits at the top layer, communicating with the user.
+
+## Slide 127
+Middleware
+Middleware: considered middleware, ensuring flexibility, security and helping to link software at adjacent layers.
+Contains service functions, which are called repeatedly by other software.
+
+## Slide 128
+Middleware (ví dụ)
+
+## Slide 129
+What does embedded software development require?
+Compilation software
+Development board
+Loader/Debugger
+Libraries (for ARM core, peripheral drivers...)
+Documents (datasheet)
+
+## Slide 130
+Steps to compile software in IDE (translation software)
+Create project
+Configure the compiler software (choose chip type, select loader circuit type)
+Write programs and compile
+Load into the flash memory of the development board
+Run the program and check for errors
+
+## Slide 131
+Design and install embedded systems
+
+## Slide 132
+MAIN CONTENT
+System design
+Test installation
+Complete product design
+
+## Slide 133
+OVERVIEW OF EMBEDDED SYSTEM DESIGN
+v Points to consider when designing HTN include:
+v A system with components:
+§	Processor
+§	Memory
+§	Peripherals
+v Integrated system:
+§	Microcontroller
+§	Expanded microcontroller
+§	Microprocessor based
+§	Board based
+v Software:
+§  System software
+§	Embedded application software, embedded application algorithms.
+
+## Slide 134
+SYSTEM DESIGN
+
+## Slide 135
+System design
+
+## Slide 136
+System design
+
+## Slide 137
+System design
+performance attributes
+
+## Slide 138
+System design
+hardware testable properties
+
+## Slide 139
+System design
+
+## Slide 140
+System design
+Example of building an embedded system performance scenario :
+
+## Slide 141
+Embedded System Design Phases
+
+## Slide 142
+Hardware and software design planning
+
+## Slide 143
+Embedded System design process
+Design rules
+V Knowledge	base	for	HTN	design:	Computer science	and electronic engineering
+V Circuit design with Verilog or VHDL hardware language (FPGA, ASIC);
+V Technological capabilities and hardware technological limitations.
+V The design must target specific application objects with the following trends:
+§   Increased program code size: 16 – 64 KB up to 64kB to 512 KB
+§	Reusing hardware (CPUs, micro-controllers, DSPs) and software (device drivers) components,
+§	There is high integration in one system (DSP, network,	RF, 32-bit CPU, Intelligent Input/Output-I2O type IO processors).
+V  Use available software, reusable software, open source code.
+V  Programming technology (programming languages, software development systems);
+
+## Slide 144
+Embedded System design process
+Design steps
+v
+Building Embedded System specifications and modeling Embedded systems will design and experiment with algorithms
+v  Gather  and  describe  basic  hardware:  base  connection,  communications, microelectronics application computing technology, memory technology, devices connected to the system.
+v  The software system will include: device control, middleware, operating system, application software
+V Partition and select parts of the design: hardware, software
+V Use design simulation tools to run hardware and software simulations
+V Critical software and hardware (time constraints) require testing and adjustment
+V Test on hardware board (prototype) with selected CPU.
+V Troubleshoot and tweak hardware and software;
+V  Complete the product.
+
+## Slide 145
+INSTALLATION AND TESTING
+
+## Slide 146
+Install and test
+v Select CPU for design
+§	Based on analyzing HTN requirements => Determine CPU features
+§	Criteria for CPU selection:
+What	types	of	peripherals	(sensors)	will	the	EMBEDDED	SYSTEM connect to?
+How many programs and data space is needed for the system?
+How many interrupts does the system need?
+How many input/output ports will the design use?
+Which type of processing has the most critical-time constraints that the CPU must perform?
+What types of development tools (for both hardware and software) are available for the CPU to choose from?
+In the case of CPU on board, what is the actual cost?
+Are there any types of available devices that can be integrated into the current system?
+How will the software work with the hardware and vice versa?….
+
+## Slide 147
+Install and test
+v Select Memory for design
+§	Two issues in choosing Memory for embedded systems:
+Memory type and operating control technique,
+Content protection mechanism (separation between system memory segments for the Operating System and segments for applications).
+§	Criteria for selecting Memory for embedded systems:
+Memory technology
+CPU compatible
+v Pair the device
+§	Pairing devices in embedded systems includes:
+Similar information(analog)
+Digital information is digitized using functional microchips(ADC/DAC).
+Data communication
+Connection techniques (serial, parallel, DMA...)
+
+## Slide 148
+Install and test
+v Software Development
+§	Write source code for EMBEDDED SYSTEMS
+§	Operating system for EMBEDDED SYSTEMS
+§	Download software to hardware
+v Troubleshooting and simulation
+§	Low level simulation
+§	Troubleshooting on the board
+§	Troubleshooting at the task level
+§	Troubleshooting symbols
+§	Optimize code
+§	Xray –Look for radiographic errors
+§	System development and simulation techniques
+§	…
+
+## Slide 149
+Install and test
+v Embedded System development example
+Board design with options:
+§	CPU Intel 8085/8086,
+§	ROM, RAM
+§	Peripheral	microcircuits	: 74257, 74 244, 74245, 7474, 8253,
+8255, 8237, UART 8250/16450/16550
+http://www.beyondlogic.org/serial/serial2.htm
+Developed HTN with Intel 8051 micro controller with KEIL Soft software.
+EMBEDDED SYSTEM with PIC :
+http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&nodeId=212 3&param=en022497
+Currently on the market there is a board with PIC 16F877 with Development System software for  sale for  900,000.00 VND, suitable  for  practicing writing application programs. Once proficient,  you  can  design  hardware  with  discrete  microchips  and  develop  specific applications from simple to complex.
+…
+
+## Slide 150
+Install and test
+v Embedded	System	development example
+Hackster.io	–Develop	embedded	system projects:https://www.hackster.io/projects
+2)  Instructables.com  –  Community  for  people who   enjoy   making   and  implementing embedded systems
+Trang 20
+
+## Slide 151
+COMPLETE PRODUCT DESIGN
+
+## Slide 152
+Design and develop product designs
+§	Product design needs attention :
+§	Product aesthetics
+§	Size, weight, style and color
+§	Select materials for product shells
+§	Protection against external impacts such as drops and water.
+§	Limit the cost of the product
+
+## Slide 153
+Embedded product development lifecycle
+§	Embedded product development lifecycle
+§	EDLC - embedded product development life cycle : “analysis-design-installation”
